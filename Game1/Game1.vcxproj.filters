@@ -18,6 +18,9 @@
     <ClInclude Include="LoadingScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -34,6 +37,9 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="LoadingScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
