@@ -23,20 +23,20 @@ Player::Player()
 	body->scale = Vector2(36.0f, 29.0f);
 	body->maxFrame = Int2(6, 3);
 	body->SetParentRT(*col);
-	body->SetLocalPosY(-30.0f);
+	body->SetLocalPosY(-25.0f);
 	
 
 
 
 
-	frameY[Dir_R] = 0;
-	frameY[Dir_T] = 1;
-	frameY[Dir_L] = 2;
-	frameY[Dir_B] = 3;
-	frameY[Dir_RB] = 4;
-	frameY[Dir_LB] = 5;
-	frameY[Dir_LT] = 6;
-	frameY[Dir_RT] = 7;
+	//frameY[Dir_R] = 0;
+	//frameY[Dir_T] = 1;
+	//frameY[Dir_L] = 2;
+	//frameY[Dir_B] = 3;
+	//frameY[Dir_RB] = 4;
+	//frameY[Dir_LB] = 5;
+	//frameY[Dir_LT] = 6;
+	//frameY[Dir_RT] = 7;
 
 	plState = PlayerState::IDLE;
 }
@@ -59,9 +59,9 @@ void Player::Update()
 	case PlayerState::WALK:
 		Walk();
 		break;
-	case PlayerState::ROLL:
-		Roll();
-		break;
+	//case PlayerState::ROLL:
+	//	Roll();
+	//	break;
 	}
 
 	col->Update();
@@ -91,7 +91,6 @@ void Player::StepBack() //º® Å¸ÀÏ¸Ê¿¡ ¸·Èú½Ã
 void Player::Idle()
 {	
 	Input();
-	//LookTarget(INPUT->GetMouseWorldPos(), walk);
 	
 	//Idle->Walk
 	if (moveDir != Vector2(0.0f, 0.0f))
@@ -104,7 +103,6 @@ void Player::Idle()
 void Player::Walk()
 {
 	Input();
-	//LookTarget(INPUT->GetMouseWorldPos(), walk);
 
 	col->MoveWorldPos(moveDir * 200.0f * DELTA);
 
@@ -139,28 +137,28 @@ void Player::Input()
 	if (INPUT->KeyPress('S'))
 	{
 		moveDir.y = -1.0f;
-		head->frame.y = 0;
+		//head->frame.y = 0;
 		body->frame.y = 0;
 	}
 	//À§
 	else if (INPUT->KeyPress('W'))
 	{
 		moveDir.y = 1.0f;
-		head->frame.y = 2;
+		//head->frame.y = 2;
 		body->frame.y = 0;
 	}
 	//ÁÂ
 	if (INPUT->KeyPress('A'))
 	{
 		moveDir.x = -1.0f;
-		head->frame.y = 3;
+		//head->frame.y = 3;
 		body->frame.y = 2;
 	}
 	//¿ì
 	else if (INPUT->KeyPress('D'))
 	{
 		moveDir.x = 1.0f;
-		head->frame.y = 1;
+		//head->frame.y = 1;
 		body->frame.y = 1;
 	}
 
@@ -169,18 +167,27 @@ void Player::Input()
 	if (INPUT->KeyPress(VK_DOWN))
 	{
 		head->frame.y = 0;
+		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
+		head->frame.x = 0;
+
 	}
 	else if (INPUT->KeyPress(VK_UP))
 	{
 		head->frame.y = 2;
+		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
+		head->frame.x = 0;
 	}
 	else if (INPUT->KeyPress(VK_LEFT))
 	{
 		head->frame.y = 3;
+		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
+		head->frame.x = 0;
 	}
 	else if (INPUT->KeyPress(VK_RIGHT))
 	{
 		head->frame.y = 1;
+		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
+		head->frame.x = 0;
 	}
 	
 	moveDir.Normalize();

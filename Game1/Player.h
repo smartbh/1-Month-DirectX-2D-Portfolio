@@ -4,8 +4,7 @@ enum class PlayerState
 {
 	IDLE,
 	WALK,
-	ROLL,
-	ATTACK
+	ITEMUSE
 };
 
 //아이템 먹었을시 색깔 바꾸기
