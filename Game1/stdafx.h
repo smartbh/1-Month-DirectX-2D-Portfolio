@@ -9,5 +9,6 @@
 extern int loadingCount;
 extern mutex m;
 
+#include "MainMenuScene.h"
 #include "LoadingScene.h"
 #include "Scene01.h"
