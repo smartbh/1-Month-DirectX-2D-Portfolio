@@ -3,43 +3,43 @@
 Scene01::Scene01()
 {
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     LIGHT->light.radius = 2000.0f;
     m.unlock();
 
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     pl = new Player();
     m.unlock();
 
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     mon = new Monster();
     m.unlock();
 
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     map = new ObTileMap();
     m.unlock();
 
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     map->file = "map3.txt";
     m.unlock();
 
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     map->Load();
     m.unlock();
 
     m.lock();
-    Sleep(1000);
+    //Sleep(1000);
     loadingCount++;
     map->CreateTileCost();
     m.unlock();

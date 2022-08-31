@@ -7,21 +7,26 @@ Player::Player()
 	col->scale = Vector2(96.0f, 96.0f);
 	col->isFilled = false;
 
-	walk = new ObImage(L"Walk.png");
-	walk->scale = Vector2(96.0f, 96.0f);
-	walk->maxFrame = Int2(6, 8);
-	walk->SetParentRT(*col);
+	//머리
+	//머리의 방향순서
+	//아래 : 0, 오른쪽 : 1, 위 : 2, 왼 : 3
+	head = new ObImage(L"playerHeads.png");
+	head->scale = Vector2(32.0f, 29.0f) * 2.0f;
+	head->maxFrame = Int2(2, 4);
+	head->SetParentRT(*col);
+	//head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
 
-	roll = new ObImage(L"Roll.png");
-	roll->scale = Vector2(96.0f, 96.0f);
-	roll->maxFrame = Int2(6, 8);
-	roll->SetParentRT(*col);
-	roll->visible = false;
+	//몸
+	//몸 방향순서
+	//위,아래 : 0 , 오른쪽 : 1, 왼쪽 : 2
+	body = new ObImage(L"playerBody.png");
+	body->scale = Vector2(36.0f, 29.0f);
+	body->maxFrame = Int2(6, 3);
+	body->SetParentRT(*col);
+	body->SetLocalPosY(-30.0f);
+	
 
-	head = new ObImage(L"head");
-	head->scale = Vector2(96.0f, 96.0f);
-	//walk->maxFrame.x = 
-	walk->SetParentRT(*col);
+
 
 
 	frameY[Dir_R] = 0;
@@ -39,8 +44,7 @@ Player::Player()
 Player::~Player()
 {
 	SafeDelete(col);
-	SafeDelete(walk);
-	SafeDelete(roll);
+
 }
 
 void Player::Update()
@@ -61,105 +65,122 @@ void Player::Update()
 	}
 
 	col->Update();
-	walk->Update();
-	roll->Update();
+	body->Update();
+	head->Update();
+
 }
 
 void Player::Render()
 {
 	col->Render();
-	walk->Render();
-	roll->Render();
+	body->Render();
+	head->Render();
+
 }
 
-void Player::StepBack()
+void Player::StepBack() //벽 타일맵에 막힐시
 {
 	col->SetWorldPos(lastPos);
 
 	col->Update();
-	walk->Update();
-	roll->Update();
+	body->Update();
+	head->Update();
+
 }
 
 void Player::Idle()
 {	
 	Input();
-	LookTarget(INPUT->GetMouseWorldPos(), walk);
+	//LookTarget(INPUT->GetMouseWorldPos(), walk);
 	
 	//Idle->Walk
 	if (moveDir != Vector2(0.0f, 0.0f))
 	{
 		plState = PlayerState::WALK;
-		walk->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+		body->ChangeAnim(ANIMSTATE::LOOP, 0.05f);
 	}
 }
 
 void Player::Walk()
 {
 	Input();
-	LookTarget(INPUT->GetMouseWorldPos(), walk);
+	//LookTarget(INPUT->GetMouseWorldPos(), walk);
 
 	col->MoveWorldPos(moveDir * 200.0f * DELTA);
 
 	//Walk -> Idle
-	if (moveDir == Vector2(0.0f, 0.0f))
+	if (moveDir == Vector2(0.0f, 0.0f)) //움직이지 않으니 방향x
 	{
 		plState = PlayerState::IDLE;
-		walk->ChangeAnim(ANIMSTATE::STOP, 0.1f);
-		walk->frame.x = 0;
+		body->ChangeAnim(ANIMSTATE::STOP, 0.1f);
+		head->frame.x = 0;
+		body->frame.x = 0;
 	}
 
-	//Walk -> Roll
+	//Walk -> ItemUse
 	if (INPUT->KeyPress(VK_SPACE))
 	{
-		plState = PlayerState::ROLL;
-		roll->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		walk->visible = false;
-		roll->visible = true;
-		rollTime = 0.0f;
+
 	}
 }
 
 void Player::Roll()
 {
-	rollTime += DELTA;
-
-	Input();
-	LookTarget(col->GetWorldPos() + moveDir, roll);
-
-	col->MoveWorldPos(moveDir * 500.0f *
-		cosf(rollTime / 0.6f * DIV2PI) * DELTA);
-	//			0 ~ 1		   0 ~ 90
-
-	//Roll -> Walk
-	if (rollTime > 0.6f)
-	{
-		plState = PlayerState::WALK;
-		walk->visible = true;
-		roll->visible = false;
-	}
+	
 }
 
 void Player::Input()
 {
 	moveDir = Vector2(0.0f, 0.0f);
 
+	//움직임
+
+	//아래
 	if (INPUT->KeyPress('S'))
 	{
 		moveDir.y = -1.0f;
+		head->frame.y = 0;
+		body->frame.y = 0;
 	}
+	//위
 	else if (INPUT->KeyPress('W'))
 	{
 		moveDir.y = 1.0f;
+		head->frame.y = 2;
+		body->frame.y = 0;
 	}
-
+	//좌
 	if (INPUT->KeyPress('A'))
 	{
 		moveDir.x = -1.0f;
+		head->frame.y = 3;
+		body->frame.y = 2;
 	}
+	//우
 	else if (INPUT->KeyPress('D'))
 	{
 		moveDir.x = 1.0f;
+		head->frame.y = 1;
+		body->frame.y = 1;
+	}
+
+
+	//공격키
+	if (INPUT->KeyPress(VK_DOWN))
+	{
+		head->frame.y = 0;
+	}
+	else if (INPUT->KeyPress(VK_UP))
+	{
+		head->frame.y = 2;
+	}
+	else if (INPUT->KeyPress(VK_LEFT))
+	{
+		head->frame.y = 3;
+	}
+	else if (INPUT->KeyPress(VK_RIGHT))
+	{
+		head->frame.y = 1;
 	}
 	
 	moveDir.Normalize();
