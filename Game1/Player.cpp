@@ -59,9 +59,12 @@ void Player::Update()
 	case PlayerState::WALK:
 		Walk();
 		break;
-	//case PlayerState::ROLL:
-	//	Roll();
-	//	break;
+	case PlayerState::ATTACK:
+		Attack();
+		break;
+	case PlayerState::ITEMUSE:
+		ItemUse();
+		break;
 	}
 
 	col->Update();
@@ -98,6 +101,14 @@ void Player::Idle()
 		plState = PlayerState::WALK;
 		body->ChangeAnim(ANIMSTATE::LOOP, 0.05f);
 	}
+	//Idle->Attack
+	if (INPUT->KeyPress(VK_UP) ||
+		INPUT->KeyPress(VK_DOWN) ||
+		INPUT->KeyPress(VK_RIGHT) ||
+		INPUT->KeyPress(VK_LEFT) )
+	{
+		plState = PlayerState::ATTACK;
+	}
 }
 
 void Player::Walk()
@@ -115,17 +126,28 @@ void Player::Walk()
 		body->frame.x = 0;
 	}
 
-	//Walk -> ItemUse
+	//Walk -> Attack
 	if (INPUT->KeyPress(VK_SPACE))
 	{
 
 	}
 }
 
-void Player::Roll()
+void Player::Attack()
 {
-	
+	Input();
+
+	if (INPUT->KeyUp())
+	{
+
+	}
 }
+
+void Player::ItemUse()
+{
+	Input();
+}
+
 
 void Player::Input()
 {
@@ -167,27 +189,29 @@ void Player::Input()
 	if (INPUT->KeyPress(VK_DOWN))
 	{
 		head->frame.y = 0;
-		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		head->frame.x = 0;
-
+		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
 	}
 	else if (INPUT->KeyPress(VK_UP))
 	{
 		head->frame.y = 2;
-		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		head->frame.x = 0;
+		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
 	}
 	else if (INPUT->KeyPress(VK_LEFT))
 	{
 		head->frame.y = 3;
-		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		head->frame.x = 0;
+		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
 	}
 	else if (INPUT->KeyPress(VK_RIGHT))
 	{
 		head->frame.y = 1;
-		head->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		head->frame.x = 0;
+		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+	}
+
+
+	//아이템 사용
+	if (INPUT->KeyDown(VK_SPACE))
+	{
+
 	}
 	
 	moveDir.Normalize();

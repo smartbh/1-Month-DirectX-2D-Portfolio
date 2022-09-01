@@ -4,6 +4,7 @@ enum class PlayerState
 {
 	IDLE,
 	WALK,
+	ATTACK,
 	ITEMUSE
 };
 
@@ -33,7 +34,8 @@ private:
 public:
 	void Idle();
 	void Walk();
-	void Roll();
+	void Attack();
+	void ItemUse();
 
 	void Input();
 
