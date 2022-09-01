@@ -159,7 +159,10 @@ void Scene01::LateUpdate()
         {
             if (map->GetTileState(on) == TILE_WALL)
             {
-                pl->StepBack();
+                for (int i = 0; i < 30; i++)
+                {
+                    pl->tear[i].StepBack();
+                }
             }
         }
     }
