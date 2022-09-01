@@ -25,7 +25,7 @@ Player::Player()
 	body->SetLocalPosY(-25.0f);
 	
 	attackSpeed = 1.0f;
-
+	moveSpeed = 200.0f;
 
 
 	//frameY[Dir_R] = 0;
@@ -36,6 +36,8 @@ Player::Player()
 	//frameY[Dir_LB] = 5;
 	//frameY[Dir_LT] = 6;
 	//frameY[Dir_RT] = 7;
+
+	attackDuration = 1.0f;
 
 	plState = PlayerState::IDLE;
 }
@@ -59,13 +61,17 @@ void Player::Update()
 		Walk();
 		break;
 	case PlayerState::DEAD:
-		Attack();
 		break;
 	}
 
 	col->Update();
 	body->Update();
 	head->Update();
+
+	for (int i = 0; i < MAX; i++)
+	{
+		tear[i].Update();
+	}
 
 }
 
@@ -74,6 +80,11 @@ void Player::Render()
 	col->Render();
 	body->Render();
 	head->Render();
+
+	for (int i = 0; i < MAX; i++)
+	{
+		tear[i].Render();
+	}
 
 }
 
@@ -103,7 +114,7 @@ void Player::Walk()
 {
 	Input();
 
-	col->MoveWorldPos(moveDir * 200.0f * DELTA);
+	col->MoveWorldPos(moveDir * moveSpeed * DELTA);
 
 	//Walk -> Idle
 	if (moveDir == Vector2(0.0f, 0.0f)) //움직이지 않으니 방향x
@@ -115,18 +126,6 @@ void Player::Walk()
 	}
 
 }
-
-void Player::Attack()
-{
-	Input();
-
-}
-
-void Player::ItemUse()
-{
-	Input();
-}
-
 
 void Player::Input()
 {
@@ -169,24 +168,102 @@ void Player::Input()
 	{
 		head->frame.y = 0;
 		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
+
+		attackDuration -= DELTA;
+		if (attackDuration > 0.0f)
+		{
+
+		}
+		else
+		{
+			for (int i = 0; i < MAX; i++)
+			{
+				if (!tear[i].isfire)
+				{
+					tear[i].Shoot(DOWN, attackSpeed * 100.0f + moveSpeed, col->GetWorldPos());
+
+					break;
+				}
+			}
+			attackDuration = 1.0f;
+		}
 	}
+
 	else if (INPUT->KeyPress(VK_UP))
 	{
 		head->frame.y = 2;
 		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
+
+		attackDuration -= DELTA;
+		if (attackDuration > 0.0f)
+		{
+
+		}
+		else
+		{
+			for (int i = 0; i < MAX; i++)
+			{
+				if (!tear[i].isfire)
+				{
+					tear[i].Shoot(UP, attackSpeed * 100.0f + moveSpeed, col->GetWorldPos());
+
+					break;
+				}
+			}
+			attackDuration = 1.0f;
+		}
 	}
 	else if (INPUT->KeyPress(VK_LEFT))
 	{
 		head->frame.y = 3;
 		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
+
+		attackDuration -= DELTA;
+		if (attackDuration > 0.0f)
+		{
+
+		}
+		else
+		{
+			for (int i = 0; i < MAX; i++)
+			{
+				if (!tear[i].isfire)
+				{
+					tear[i].Shoot(LEFT, attackSpeed * 100.0f + moveSpeed, col->GetWorldPos());
+
+					break;
+				}
+			}
+			attackDuration = 1.0f;
+		}
 	}
 	else if (INPUT->KeyPress(VK_RIGHT))
 	{
 		head->frame.y = 1;
 		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
+
+		attackDuration -= DELTA;
+		if (attackDuration > 0.0f)
+		{
+
+		}
+		else
+		{
+			for (int i = 0; i < MAX; i++)
+			{
+				if (!tear[i].isfire)
+				{
+					tear[i].Shoot(RIGHT, attackSpeed * 100.0f + moveSpeed, col->GetWorldPos());
+
+					break;
+				}
+			}
+			attackDuration = 1.0f;
+		}
 	}
 
 
+	//공격 안할시 머리 제대로 돌리기
 	if (INPUT->KeyUp(VK_UP) ||
 		INPUT->KeyUp(VK_DOWN) ||
 		INPUT->KeyUp(VK_RIGHT) ||
@@ -197,8 +274,14 @@ void Player::Input()
 	}
 
 
-	//아이템 사용
+	//아이템 사용 (스페이스바)
 	if (INPUT->KeyDown(VK_SPACE))
+	{
+
+	}
+
+	//폭탄사용 (E키)
+	if (INPUT->KeyDown('E'))
 	{
 
 	}

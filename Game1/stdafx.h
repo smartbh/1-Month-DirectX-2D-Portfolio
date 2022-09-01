@@ -3,9 +3,10 @@
 #pragma comment (lib,"../Build/2DFrameWork/2DFrameWork.lib")
 
 #include "Character.h"
-#include "Player.h"
+
 #include "Monster.h"
 #include "PlayerBullet.h"
+#include "Player.h"
 
 
 extern int loadingCount;

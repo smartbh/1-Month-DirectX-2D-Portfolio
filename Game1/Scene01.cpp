@@ -152,6 +152,18 @@ void Scene01::LateUpdate()
         }
     }
 
+    for (int i = 0; i < 4; i++)
+    {
+        Int2 on;
+        if (map->WorldPosToTileIdx(Foot[i], on))
+        {
+            if (map->GetTileState(on) == TILE_WALL)
+            {
+                pl->StepBack();
+            }
+        }
+    }
+
 
 }
 

@@ -19,26 +19,22 @@ enum class PlayerHeadBodyState
 class Player : public Character
 {
 private:
-	ObImage*	walk;
-	ObImage*	roll;
 	ObImage*	head;
 	ObImage*	body;
 
-
 	PlayerState plState;
 	
-	float		rollTime;
-
 	float		attackSpeed;
-	float		damage;
+	float		attackDuration;
+	float		moveSpeed;
+	float		hp;
+
 	Vector2		lastPos;
 
 public:
 
 	void Idle();
 	void Walk();
-	void Attack();
-	void ItemUse();
 
 	void Input();
 
