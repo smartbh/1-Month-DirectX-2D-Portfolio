@@ -5,6 +5,8 @@
 #include "Character.h"
 #include "Player.h"
 #include "Monster.h"
+#include "PlayerBullet.h"
+
 
 extern int loadingCount;
 extern mutex m;

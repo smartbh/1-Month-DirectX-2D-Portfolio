@@ -14,7 +14,6 @@ Player::Player()
 	head->scale = Vector2(32.0f, 29.0f) * 2.0f;
 	head->maxFrame = Int2(2, 4);
 	head->SetParentRT(*col);
-	//head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
 
 	//个
 	//个 规氢鉴辑
@@ -25,7 +24,7 @@ Player::Player()
 	body->SetParentRT(*col);
 	body->SetLocalPosY(-25.0f);
 	
-
+	attackSpeed = 1.0f;
 
 
 
@@ -59,11 +58,8 @@ void Player::Update()
 	case PlayerState::WALK:
 		Walk();
 		break;
-	case PlayerState::ATTACK:
+	case PlayerState::DEAD:
 		Attack();
-		break;
-	case PlayerState::ITEMUSE:
-		ItemUse();
 		break;
 	}
 
@@ -101,14 +97,6 @@ void Player::Idle()
 		plState = PlayerState::WALK;
 		body->ChangeAnim(ANIMSTATE::LOOP, 0.05f);
 	}
-	//Idle->Attack
-	if (INPUT->KeyPress(VK_UP) ||
-		INPUT->KeyPress(VK_DOWN) ||
-		INPUT->KeyPress(VK_RIGHT) ||
-		INPUT->KeyPress(VK_LEFT) )
-	{
-		plState = PlayerState::ATTACK;
-	}
 }
 
 void Player::Walk()
@@ -126,21 +114,12 @@ void Player::Walk()
 		body->frame.x = 0;
 	}
 
-	//Walk -> Attack
-	if (INPUT->KeyPress(VK_SPACE))
-	{
-
-	}
 }
 
 void Player::Attack()
 {
 	Input();
 
-	if (INPUT->KeyUp())
-	{
-
-	}
 }
 
 void Player::ItemUse()
@@ -159,28 +138,28 @@ void Player::Input()
 	if (INPUT->KeyPress('S'))
 	{
 		moveDir.y = -1.0f;
-		//head->frame.y = 0;
+		head->frame.y = 0;
 		body->frame.y = 0;
 	}
 	//困
 	else if (INPUT->KeyPress('W'))
 	{
 		moveDir.y = 1.0f;
-		//head->frame.y = 2;
+		head->frame.y = 2;
 		body->frame.y = 0;
 	}
 	//谅
 	if (INPUT->KeyPress('A'))
 	{
 		moveDir.x = -1.0f;
-		//head->frame.y = 3;
+		head->frame.y = 3;
 		body->frame.y = 2;
 	}
 	//快
 	else if (INPUT->KeyPress('D'))
 	{
 		moveDir.x = 1.0f;
-		//head->frame.y = 1;
+		head->frame.y = 1;
 		body->frame.y = 1;
 	}
 
@@ -189,22 +168,32 @@ void Player::Input()
 	if (INPUT->KeyPress(VK_DOWN))
 	{
 		head->frame.y = 0;
-		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
 	}
 	else if (INPUT->KeyPress(VK_UP))
 	{
 		head->frame.y = 2;
-		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
 	}
 	else if (INPUT->KeyPress(VK_LEFT))
 	{
 		head->frame.y = 3;
-		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
 	}
 	else if (INPUT->KeyPress(VK_RIGHT))
 	{
 		head->frame.y = 1;
-		head->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
+	}
+
+
+	if (INPUT->KeyUp(VK_UP) ||
+		INPUT->KeyUp(VK_DOWN) ||
+		INPUT->KeyUp(VK_RIGHT) ||
+		INPUT->KeyUp(VK_LEFT))
+	{
+		head->ChangeAnim(ANIMSTATE::STOP, 0.1f);
+		head->frame.x = 0;
 	}
 
 

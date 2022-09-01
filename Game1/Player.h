@@ -1,11 +1,11 @@
 #pragma once
+#define MAX 30
 
 enum class PlayerState
 {
 	IDLE,
 	WALK,
-	ATTACK,
-	ITEMUSE
+	DEAD
 };
 
 //아이템 먹었을시 색깔 바꾸기
@@ -29,15 +29,20 @@ private:
 	
 	float		rollTime;
 
+	float		attackSpeed;
+	float		damage;
 	Vector2		lastPos;
 
 public:
+
 	void Idle();
 	void Walk();
 	void Attack();
 	void ItemUse();
 
 	void Input();
+
+	PlayerBullet tear[MAX];
 
 public:
 	Player();

@@ -6,6 +6,8 @@ private:
 	Player* pl;
 	Monster* mon;
 
+	ObRect* bg; //검은배경
+
 	ObTileMap* map;
 
 	//길찾기용 변수

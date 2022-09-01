@@ -17,6 +17,8 @@ public:
 	ObRect* col;
 	ST_playerBullet bullet[MAX];
 
+	float attackSpeed;
+
 public:
 	ST_Player();
 	~ST_Player();

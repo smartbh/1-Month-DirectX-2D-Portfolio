@@ -2,6 +2,11 @@
 
 Scene01::Scene01()
 {
+    bg = new ObRect();
+    bg->scale = Vector2(10000.0f, 10000.0f);
+    bg->color = Color(0.0f, 0.0f, 0.0f, 1.0f);
+    bg->isFilled = true;
+
     m.lock();
     //Sleep(1000);
     loadingCount++;
@@ -116,7 +121,7 @@ void Scene01::Update()
                 PlDest = PlWay.back()->Pos;
         }
     }
-
+    bg->Update();
     pl->Update();
     mon->SetTarget(pl->GetPos());
     mon->Update();
@@ -152,6 +157,7 @@ void Scene01::LateUpdate()
 
 void Scene01::Render()
 {
+    bg->Render();
     //                               L  T   R   B
     DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
         30.0f, L"ÈÞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
