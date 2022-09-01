@@ -152,22 +152,24 @@ void Scene01::LateUpdate()
         }
     }
 
-    for (int i = 0; i < 4; i++)
+    
+    for (int j = 0; j < MAX; j++)
     {
-        Int2 on;
-        if (map->WorldPosToTileIdx(Foot[i], on))
+        Foot = pl->tear[j].GetFoot();
+
+        for (int i = 0; i < 4; i++)
         {
-            if (map->GetTileState(on) == TILE_WALL)
+            Int2 on;
+            if (map->WorldPosToTileIdx(Foot[i], on))
             {
-                for (int i = 0; i < 30; i++)
+                if (map->GetTileState(on) == TILE_WALL)
                 {
-                    pl->tear[i].StepBack();
+                    pl->tear[j].StepBack();
+                    pl->tear[j].isfire = false;
                 }
             }
         }
     }
-
-
 }
 
 void Scene01::Render()
