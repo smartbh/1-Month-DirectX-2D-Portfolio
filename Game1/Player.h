@@ -26,10 +26,13 @@ private:
 	
 	float		attackSpeed;
 	float		attackDuration;
+	float       hitDuration;
 	float		moveSpeed;
 	float		hp;
 
 	Vector2		lastPos;
+
+	bool		isDamaged;
 
 public:
 
@@ -46,6 +49,7 @@ public:
 
 	void Update();
 	void Render();
+	void hit();
 
 	void StepBack();
 };

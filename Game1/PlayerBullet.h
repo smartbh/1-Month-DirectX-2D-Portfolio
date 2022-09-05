@@ -4,6 +4,7 @@ class PlayerBullet
 public:
 	ObRect*		col;
 	ObImage*	bullet;
+	ObImage*	bulletDead;
 	Vector2		fireDir;
 	Vector2		lastPos;
 	vector<Vector2> foot;
@@ -22,11 +23,13 @@ private:
 	int			level;
 
 public:
-	int			damage;
+	float			damage;
 
 	int			GetLevel() { return level; } //총알 레벨
 	void		ChangeLevel(int level); // 총알레벨이 올라가면 갯수나 파워 강해지게
 	void		StepBack();
+
+	void		tearBoom(); //벽에 닿았을시 눈물 터짐
 
 	Vector2 GetPos()
 	{

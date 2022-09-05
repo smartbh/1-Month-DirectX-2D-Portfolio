@@ -34,7 +34,7 @@ Scene01::Scene01()
     m.lock();
     //Sleep(1000);
     loadingCount++;
-    map->file = "map3.txt";
+    map->file = "startMap.txt";
     m.unlock();
 
     m.lock();
@@ -131,6 +131,29 @@ void Scene01::Update()
 
 void Scene01::LateUpdate()
 {
+    //플레이어가 몬스터와 부딪힐시
+    /*
+    {
+        hit 애니메이션(번쩍번쩍) 한번 하고
+        체력 1 까이게
+    }
+    
+    */
+
+
+    //눈물이 몬스터에 부딪힐시
+    /*
+    {
+        몬스터도 마찬가지로
+        hit 애니메이션(번쩍번쩍) 한번 하고
+        체력 1 까이게
+        단 눈물 damage에 맞게
+    }
+    */
+
+
+
+    //눈물과 플레이어 몬스터가 벽에 부딪힐시
     Int2 on;
 
     if (map->WorldPosToTileIdx(pl->GetPos(), on))
@@ -140,6 +163,7 @@ void Scene01::LateUpdate()
 
     vector<Vector2>& Foot = pl->GetFoot();
 
+    //플레이어
     for (int i = 0; i < 4; i++)
     {
         Int2 on;
@@ -149,10 +173,14 @@ void Scene01::LateUpdate()
             {
                 pl->StepBack();
             }
+            else if (map->GetTileState(on) == TILE_TRAP) //3
+            {
+                pl->hit();
+            }
         }
     }
 
-    
+    //눈물
     for (int j = 0; j < MAX; j++)
     {
         Foot = pl->tear[j].GetFoot();
@@ -170,6 +198,8 @@ void Scene01::LateUpdate()
             }
         }
     }
+
+    //몬스터
 }
 
 void Scene01::Render()

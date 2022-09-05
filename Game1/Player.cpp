@@ -27,17 +27,10 @@ Player::Player()
 	attackSpeed = 1.0f;
 	moveSpeed = 200.0f;
 
-
-	//frameY[Dir_R] = 0;
-	//frameY[Dir_T] = 1;
-	//frameY[Dir_L] = 2;
-	//frameY[Dir_B] = 3;
-	//frameY[Dir_RB] = 4;
-	//frameY[Dir_LB] = 5;
-	//frameY[Dir_LT] = 6;
-	//frameY[Dir_RT] = 7;
-
 	attackDuration = 1.0f;
+	hitDuration = 0.5f;
+
+	isDamaged = false;
 
 	plState = PlayerState::IDLE;
 }
@@ -50,6 +43,26 @@ Player::~Player()
 
 void Player::Update()
 {
+	if (isDamaged) //update¿¡, isDamaged°¡ true¸é
+	{
+		hitDuration -= DELTA;
+
+		head->color = Color(RANDOM->Float(0.5f, 1.0f), 0.5f, 0.5f, 0.5f);
+		body->color = Color(RANDOM->Float(0.5f, 1.0f), 0.5f, 0.5f, 0.5f);
+
+
+		if (hitDuration < 0.0f)
+		{
+			head->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
+			body->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
+
+			isDamaged = false;
+		}
+
+	}
+
+
+
 	lastPos = col->GetWorldPos();
 
 	switch (plState)
@@ -289,4 +302,22 @@ void Player::Input()
 	moveDir.Normalize();
 }
 
+void Player::hit()
+{
+	isDamaged = true;
+	hitDuration = 1.0f;
+
+	//if (hitDuration > 0.0f)
+	//{
+
+	//}
+	//else
+	//{
+	//	for (int i = 0; i < MAX; i++)
+	//	{
+	// 
+	//	}
+	//	attackDuration = 1.0f;
+	//}
+}
 
