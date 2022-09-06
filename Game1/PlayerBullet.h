@@ -9,6 +9,7 @@ public:
 	Vector2		lastPos;
 	vector<Vector2> foot;
 	float		scalar;
+	float		tearBoomTime;
 
 	bool		isfire;
 

@@ -2,10 +2,52 @@
 
 Scene01::Scene01()
 {
+    m.lock();
     bg = new ObRect();
     bg->scale = Vector2(10000.0f, 10000.0f);
     bg->color = Color(0.0f, 0.0f, 0.0f, 1.0f);
     bg->isFilled = true;
+    m.unlock();
+
+    m.lock();
+    tutorial1 = new ObImage(L"tutorial1.png");
+    tutorial1->scale = Vector2(50.0f, 67.0f) * 2.0f;
+    tutorial1->SetWorldPosX(-400.0f);
+    tutorial1->maxFrame.x = 2;
+    tutorial1->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+    tutorial1->visible = true;
+    tutorial1->Update();
+    m.unlock();
+
+    m.lock();
+    tutorial2 = new ObImage(L"tutorial2.png");
+    tutorial2->scale = Vector2(62.0f, 67.0f) * 2.0f;
+    tutorial2->SetWorldPosX(-200.0f);
+    tutorial2->maxFrame.x = 2;
+    tutorial2->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+    tutorial2->visible = true;
+    tutorial2->Update();
+    m.unlock();
+
+    m.lock();
+    tutorial3 = new ObImage(L"tutorial3.png");
+    tutorial3->scale = Vector2(46.0f, 67.0f) * 2.0f;
+    tutorial3->SetWorldPosX(0.0f);
+    tutorial3->maxFrame.x = 2;
+    tutorial3->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+    tutorial3->visible = true;
+    tutorial3->Update();
+    m.unlock();
+
+    m.lock();
+    tutorial4 = new ObImage(L"tutorial4.png");
+    tutorial4->scale = Vector2(43.0f, 79.0f) * 2.0f;
+    tutorial4->SetWorldPosX(200.0f);
+    tutorial4->maxFrame.x = 2;
+    tutorial4->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+    tutorial4->visible = true;
+    tutorial4->Update();
+    m.unlock();
 
     m.lock();
     //Sleep(1000);
@@ -209,6 +251,10 @@ void Scene01::Render()
     DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
         30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
     map->Render();
+    tutorial1->Render();
+    tutorial2->Render();
+    tutorial3->Render();
+    tutorial4->Render();
     pl->Render();
     mon->Render();
 }

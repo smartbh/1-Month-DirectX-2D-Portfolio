@@ -45,6 +45,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{54A271
 		Contents\Images\tears_effect.png = Contents\Images\tears_effect.png
 		Contents\Images\Tile.png = Contents\Images\Tile.png
 		Contents\Images\Tile2.png = Contents\Images\Tile2.png
+		Contents\Images\tutorial1.png = Contents\Images\tutorial1.png
+		Contents\Images\tutorial2.png = Contents\Images\tutorial2.png
+		Contents\Images\tutorial3.png = Contents\Images\tutorial3.png
+		Contents\Images\tutorial4.png = Contents\Images\tutorial4.png
 		Contents\Images\zzangu_3.jpg = Contents\Images\zzangu_3.jpg
 	EndProjectSection
 EndProject

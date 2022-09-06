@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
+    <ClInclude Include="EffectManger.h" />
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="EffectManger.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />

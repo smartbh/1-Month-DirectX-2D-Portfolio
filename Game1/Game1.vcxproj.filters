@@ -24,6 +24,9 @@
     <ClInclude Include="PlayerBullet.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="EffectManger.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -48,6 +51,9 @@
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManger.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -55,6 +61,9 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{e430be2a-5f1c-4ff5-9873-590bc0d16f25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{22af1c48-ccba-4fb0-a09c-9289b621d010}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -78,6 +78,8 @@ void PlayerBullet::ChangeLevel(int level)
 
 void PlayerBullet::StepBack() //º® Å¸ÀÏ¸Ê¿¡ ¸·Èú½Ã
 {
+	//À§Ä¡, ½Ì±ÛÅæ ÀÌÆåÆ®¸Å´ÏÀú
+
 	col->SetWorldPos(lastPos);
 
 	col->Update();

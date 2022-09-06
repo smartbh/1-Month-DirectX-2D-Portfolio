@@ -6,6 +6,11 @@ private:
 	Player* pl;
 	Monster* mon;
 
+	ObImage* tutorial1;
+	ObImage* tutorial2;
+	ObImage* tutorial3;
+	ObImage* tutorial4;
+
 	ObRect* bg; //검은배경
 
 	ObTileMap* map;
