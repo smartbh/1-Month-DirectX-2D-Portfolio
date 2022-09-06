@@ -43,6 +43,13 @@ Player::~Player()
 
 void Player::Update()
 {
+	//TileScale
+	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 10.0f);
+
+	//TileSize
+	ImGui::SliderFloat2("MoveSpeed", &moveSpeed, 1.0f, 10.0f);
+
+
 	if (isDamaged) //update¿¡, isDamaged°¡ true¸é
 	{
 		hitDuration -= DELTA;
@@ -180,7 +187,7 @@ void Player::Input()
 	if (INPUT->KeyPress(VK_DOWN))
 	{
 		head->frame.y = 0;
-		head->ChangeAnim(ANIMSTATE::LOOP, attackSpeed - 0.8f);
+		head->ChangeAnim(ANIMSTATE::LOOP, attackDuration);
 
 		attackDuration -= DELTA;
 		if (attackDuration > 0.0f)

@@ -16,7 +16,7 @@ public:
     EffectManger();
     ~EffectManger();
 
-    void    EffectPlay();
+    void    EffectPlay(Vector2 _playLocation, int num);
     void    Release();
     void    Update();
     void    LateUpdate();

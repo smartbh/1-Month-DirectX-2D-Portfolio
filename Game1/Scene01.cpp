@@ -234,6 +234,8 @@ void Scene01::LateUpdate()
             {
                 if (map->GetTileState(on) == TILE_WALL)
                 {
+                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
+                    EFFECT->Update();
                     pl->tear[j].StepBack();
                     pl->tear[j].isfire = false;
                 }
@@ -247,10 +249,11 @@ void Scene01::LateUpdate()
 void Scene01::Render()
 {
     bg->Render();
-    //                               L  T   R   B
-    DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
-        30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
+    //                                          L  T        R       B
+    //DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
+    //    30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
     map->Render();
+    EFFECT->Render();
     tutorial1->Render();
     tutorial2->Render();
     tutorial3->Render();

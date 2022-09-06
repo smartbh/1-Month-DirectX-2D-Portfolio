@@ -30,8 +30,6 @@ public:
 	void		ChangeLevel(int level); // 총알레벨이 올라가면 갯수나 파워 강해지게
 	void		StepBack();
 
-	void		tearBoom(); //벽에 닿았을시 눈물 터짐
-
 	Vector2 GetPos()
 	{
 		return col->GetWorldPos();

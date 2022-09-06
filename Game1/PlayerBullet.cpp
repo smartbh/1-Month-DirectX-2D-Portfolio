@@ -87,8 +87,4 @@ void PlayerBullet::StepBack() //벽 타일맵에 막힐시
 
 }
 
-void PlayerBullet::tearBoom()
-{
-
-}
 
