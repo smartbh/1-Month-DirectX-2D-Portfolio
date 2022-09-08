@@ -10,6 +10,21 @@ Scene01::Scene01()
     m.unlock();
 
     m.lock();
+    spikeCol = new ObRect();
+    spikeCol->scale = Vector2(64.0f, 64.0f);
+    spikeCol->isFilled = false;
+    spikeCol->collider = COLLIDER::RECT;
+    spikeCol->SetWorldPos(Vector2(0.0f, 0.0f));
+    m.unlock();
+
+    m.lock();
+    spike = new ObImage(L"spike.png");
+    spike->scale = Vector2(64.0f, 64.0f);
+    spike->SetParentRT(*spikeCol);
+    m.unlock();
+
+
+    m.lock();
     tutorial1 = new ObImage(L"tutorial1.png");
     tutorial1->scale = Vector2(50.0f, 67.0f) * 2.0f;
     tutorial1->SetWorldPosX(-400.0f);
@@ -168,6 +183,8 @@ void Scene01::Update()
     mon->SetTarget(pl->GetPos());
     mon->Update();
     map->Update();
+    spike->Update();
+    spikeCol->Update();
     CAM->position = pl->GetPos();
 }
 
@@ -215,11 +232,16 @@ void Scene01::LateUpdate()
             {
                 pl->StepBack();
             }
-            else if (map->GetTileState(on) == TILE_TRAP) //3
-            {
-                pl->hit();
-            }
+            //else if (map->GetTileState(on) == TILE_TRAP) //3
+            //{
+            //    pl->hit();
+            //}
         }
+    }
+
+    if (spikeCol->Intersect(pl->getCol()))
+    {
+        pl->hit();
     }
 
     //´«¹°
@@ -253,6 +275,8 @@ void Scene01::Render()
     //DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
     //    30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
     map->Render();
+    spike->Render();
+    spikeCol->Render();
     EFFECT->Render();
     tutorial1->Render();
     tutorial2->Render();

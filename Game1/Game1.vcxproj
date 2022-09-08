@@ -28,6 +28,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="Scene01.h" />
+    <ClInclude Include="scene02.h" />
+    <ClInclude Include="scene03.h" />
+    <ClInclude Include="scene04.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +43,9 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="Scene01.cpp" />
+    <ClCompile Include="scene02.cpp" />
+    <ClCompile Include="scene03.cpp" />
+    <ClCompile Include="scene04.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

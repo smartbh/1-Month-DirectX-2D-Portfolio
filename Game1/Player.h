@@ -50,7 +50,7 @@ public:
 	void Update();
 	void Render();
 	void hit();
-
+	ObRect* getCol();
 	void StepBack();
 };
 

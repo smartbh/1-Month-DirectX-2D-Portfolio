@@ -30,6 +30,8 @@ Player::Player()
 	attackDuration = 1.0f;
 	hitDuration = 0.5f;
 
+	hp = 3.0f;
+
 	isDamaged = false;
 
 	plState = PlayerState::IDLE;
@@ -43,6 +45,7 @@ Player::~Player()
 
 void Player::Update()
 {
+	cout << "hp : " << hp << endl;
 	//TileScale
 	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 10.0f);
 
@@ -62,7 +65,7 @@ void Player::Update()
 		{
 			head->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
 			body->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
-
+			hp--;
 			isDamaged = false;
 		}
 
@@ -327,4 +330,11 @@ void Player::hit()
 	//	attackDuration = 1.0f;
 	//}
 }
+
+ObRect* Player::getCol()
+{
+	return col;
+}
+
+
 

@@ -3,27 +3,30 @@
 class Scene01 : public Scene
 {
 private:
-	Player* pl;
-	Monster* mon;
+	Player*		pl;
+	Monster*	mon;
 
-	ObImage* tutorial1;
-	ObImage* tutorial2;
-	ObImage* tutorial3;
-	ObImage* tutorial4;
+	ObImage*	tutorial1;
+	ObImage*	tutorial2;
+	ObImage*	tutorial3;
+	ObImage*	tutorial4;
 
-	ObRect* bg; //검은배경
+	ObImage*	spike;
+	ObRect*		spikeCol;
 
-	ObTileMap* map;
+	ObRect*		bg; //검은배경
+
+	ObTileMap*	map;
 
 	//길찾기용 변수
 	vector<Tile*> PlWay;
 
 	//이동시킬 위치
-	Vector2 PlDest;
-	Vector2 PlSour;
+	Vector2		PlDest;
+	Vector2		PlSour;
 
 	//비율
-	float   g;
+	float		g;
 
 public:
 	Scene01();
