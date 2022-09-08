@@ -12,10 +12,14 @@
 #include "PlayerBullet.h"
 #include "Player.h"
 
+#include "scene02.h"
+
 
 extern int loadingCount;
 extern mutex m;
 
 #include "MainMenuScene.h"
 #include "LoadingScene.h"
+
 #include "Scene01.h"
+

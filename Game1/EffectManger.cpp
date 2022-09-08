@@ -6,6 +6,11 @@ EffectManger::EffectManger()
 	tearBoom->scale = Vector2(64.0f, 64.0f);
 	tearBoom->maxFrame.x = 16;
 	tearBoom->visible = true;
+
+	BombBoom = new ObImage(L"BombExplosion.png");
+	BombBoom->scale = Vector2(96.0f, 96.0f);
+	BombBoom->maxFrame.x = 16;
+	BombBoom->visible = true;
 }
 
 EffectManger::~EffectManger()
@@ -24,9 +29,9 @@ void EffectManger::EffectPlay(Vector2 _playLocation, int num)
 		tearBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
 		break;
 	case 1:
-		BombBoom->SetWorldPos(_playLocation);
-		BombBoom->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
 		BombBoom->visible = true;
+		BombBoom->SetWorldPos(_playLocation);
+		BombBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
 		break;
 	default:
 		break;
@@ -40,6 +45,7 @@ void EffectManger::Release()
 void EffectManger::Update()
 {
 	tearBoom->Update();
+	BombBoom->Update();
 }
 
 void EffectManger::LateUpdate()
@@ -49,4 +55,5 @@ void EffectManger::LateUpdate()
 void EffectManger::Render()
 {
 	tearBoom->Render();
+	BombBoom->Render();
 }

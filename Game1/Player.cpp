@@ -4,8 +4,9 @@ Player::Player()
 {
 	col = new ObRect();
 	col->SetWorldPos(Vector2(-500.0f, -200.0f));
-	col->scale = Vector2(96.0f, 96.0f);
+	col->scale = Vector2(48.0f, 60.0f);
 	col->isFilled = false;
+	//col->pivot = OFFSET_B;
 
 	//머리
 	//머리의 방향순서
@@ -13,6 +14,7 @@ Player::Player()
 	head = new ObImage(L"playerHeads.png");
 	head->scale = Vector2(32.0f, 29.0f) * 2.0f;
 	head->maxFrame = Int2(2, 4);
+	head->SetLocalPosY(40.0f);
 	head->SetParentRT(*col);
 
 	//몸
@@ -22,12 +24,12 @@ Player::Player()
 	body->scale = Vector2(36.0f, 29.0f);
 	body->maxFrame = Int2(6, 3);
 	body->SetParentRT(*col);
-	body->SetLocalPosY(-25.0f);
+	body->SetLocalPosY(15.0f);
 	
 	attackSpeed = 1.0f;
 	moveSpeed = 200.0f;
 
-	attackDuration = 1.0f;
+	attackDuration = 0.1f;
 	hitDuration = 0.5f;
 
 	hp = 3.0f;

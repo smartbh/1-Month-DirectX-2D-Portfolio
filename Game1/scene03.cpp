@@ -1,1 +1,2 @@
-#include "scene03.h"
+#include "stdafx.h"
+

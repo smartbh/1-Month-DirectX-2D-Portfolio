@@ -12,6 +12,16 @@ Scene01::Scene01()
     m.lock();
     m.unlock();
 
+    m.lock();
+    {
+        scene02* _scene02 = new scene02();
+        SCENE->AddScene("Scene02", _scene02);
+    }
+    m.unlock();
+
+    /// <summary>
+    /// 문 제작
+    /// </summary>
     m.lock();//전후좌우순으로 생성
     //전
     doorsCol[0] = new ObRect();
@@ -270,8 +280,30 @@ void Scene01::LateUpdate()
         단 눈물 damage에 맞게
     }
     */
-
-
+    
+    //문에 들어가면 다른 씬 나오게
+    for (int i = 0; i < 4; i++)
+    {
+        if (doorsCol[i]->Intersect(pl->getCol()))
+        {
+            switch (i)
+            {
+            case 0:
+                //위
+                SCENE->ChangeScene("Scene02");
+                break;
+            case 1:
+                //아래
+                break;
+            case 2:
+                //왼
+                break;
+            case 3:
+                //오
+                break;
+            }
+        }
+    }
 
     //눈물과 플레이어 몬스터가 벽에 부딪힐시
     Int2 on;
@@ -313,7 +345,7 @@ void Scene01::LateUpdate()
             {
                 if (map->GetTileState(on) == TILE_WALL)
                 {
-                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
+                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 1);
                     EFFECT->Update();
                     pl->tear[j].StepBack();
                     pl->tear[j].isfire = false;
