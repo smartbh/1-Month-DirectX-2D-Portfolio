@@ -30,6 +30,10 @@ private:
 	float		moveSpeed;
 	float		hp;
 
+	int			key; //¹® ¿©´Â ¿­¼è
+	int			goldKey; //È²±Ý¹æ ¿­¼è
+	int			bomb; //ÆøÅº
+
 	Vector2		lastPos;
 
 	bool		isDamaged;

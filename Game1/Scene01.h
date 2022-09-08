@@ -11,8 +11,14 @@ private:
 	ObImage*	tutorial3;
 	ObImage*	tutorial4;
 
-	ObImage*	spike;
+	ObImage*	spike; //스파이크 실험
 	ObRect*		spikeCol;
+
+	ObImage*	rock; //바위
+	ObRect*		rockCol;
+
+	ObImage*	doors[4]; //전후좌우 순
+	ObRect*		doorsCol[4];
 
 	ObRect*		bg; //검은배경
 

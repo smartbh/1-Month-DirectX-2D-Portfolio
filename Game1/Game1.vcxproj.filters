@@ -36,6 +36,9 @@
     <ClInclude Include="scene04.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -71,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="scene04.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

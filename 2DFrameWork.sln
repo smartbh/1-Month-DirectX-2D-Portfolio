@@ -33,6 +33,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{54A271
 		Contents\Images\bono2.png = Contents\Images\bono2.png
 		Contents\Images\bono3.png = Contents\Images\bono3.png
 		Contents\Images\boss.bmp = Contents\Images\boss.bmp
+		Contents\Images\doorDown.png = Contents\Images\doorDown.png
+		Contents\Images\doorLeft.png = Contents\Images\doorLeft.png
+		Contents\Images\doorOpenDown.png = Contents\Images\doorOpenDown.png
+		Contents\Images\doorOpenLeft.png = Contents\Images\doorOpenLeft.png
+		Contents\Images\doorOpenRight.png = Contents\Images\doorOpenRight.png
+		Contents\Images\doorOpenUp.png = Contents\Images\doorOpenUp.png
+		Contents\Images\doorRight.png = Contents\Images\doorRight.png
+		Contents\Images\doorUp.png = Contents\Images\doorUp.png
 		Contents\Images\iso.png = Contents\Images\iso.png
 		Contents\Images\LeftRight.png = Contents\Images\LeftRight.png
 		..\..\..\..\user\Desktop\pepe.png = ..\..\..\..\user\Desktop\pepe.png
@@ -70,8 +78,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Txt", "Txt", "{BC1DD457-26F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sound", "Sound", "{031D9208-75CB-45ED-AE3F-F9B0AA28E8CC}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Desktop\Framework\Contents\Sound\bgm.wav = ..\..\Desktop\Framework\Contents\Sound\bgm.wav
-		..\..\Desktop\Framework\Contents\Sound\gun.wav = ..\..\Desktop\Framework\Contents\Sound\gun.wav
 		Contents\Sound\tear_destroy.wav = Contents\Sound\tear_destroy.wav
 		Contents\Sound\tear_fire.wav = Contents\Sound\tear_fire.wav
 	EndProjectSection

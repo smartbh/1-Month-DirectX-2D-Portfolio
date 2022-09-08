@@ -10,6 +10,67 @@ Scene01::Scene01()
     m.unlock();
 
     m.lock();
+    m.unlock();
+
+    m.lock();//ÀüÈÄÁÂ¿ì¼øÀ¸·Î »ı¼º
+    //Àü
+    doorsCol[0] = new ObRect();
+    doorsCol[0]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+    doorsCol[0]->SetWorldPos(Vector2(-100.0f, 250.0f));
+    doorsCol[0]->collider = COLLIDER::RECT;
+    doorsCol[0]->isFilled = false;
+
+    doors[0] = new ObImage(L"doorOpenUp.png");
+    doors[0]->SetParentRT(*doorsCol[0]);
+    doors[0]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+
+    doorsCol[0]->Update();
+    doors[0]->Update();
+
+    //ÈÄ
+    doorsCol[1] = new ObRect();
+    doorsCol[1]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+    doorsCol[1]->SetWorldPos(Vector2(-100.0f, -300.0f));
+    doorsCol[1]->collider = COLLIDER::RECT;
+    doorsCol[1]->isFilled = false;
+
+    doors[1] = new ObImage(L"doorOpenDown.png");
+    doors[1]->SetParentRT(*doorsCol[1]);
+    doors[1]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+
+    doorsCol[1]->Update();
+    doors[1]->Update();
+
+    //ÁÂ
+    doorsCol[2] = new ObRect();
+    doorsCol[2]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+    doorsCol[2]->SetWorldPos(Vector2(-600.0f, 0.0f));
+    doorsCol[2]->collider = COLLIDER::RECT;
+    doorsCol[2]->isFilled = false;
+
+    doors[2] = new ObImage(L"doorOpenLeft.png");
+    doors[2]->SetParentRT(*doorsCol[2]);
+    doors[2]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+
+    doorsCol[2]->Update();
+    doors[2]->Update();
+
+    //¿ì
+    doorsCol[3] = new ObRect();
+    doorsCol[3]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+    doorsCol[3]->SetWorldPos(Vector2(400.0f, 0.0f));
+    doorsCol[3]->collider = COLLIDER::RECT;
+    doorsCol[3]->isFilled = false;
+
+    doors[3] = new ObImage(L"doorOpenRight.png");
+    doors[3]->SetParentRT(*doorsCol[3]);
+    doors[3]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+
+    doorsCol[3]->Update();
+    doors[3]->Update();
+    m.unlock();
+
+    m.lock();
     spikeCol = new ObRect();
     spikeCol->scale = Vector2(64.0f, 64.0f);
     spikeCol->isFilled = false;
@@ -232,10 +293,6 @@ void Scene01::LateUpdate()
             {
                 pl->StepBack();
             }
-            //else if (map->GetTileState(on) == TILE_TRAP) //3
-            //{
-            //    pl->hit();
-            //}
         }
     }
 
@@ -275,8 +332,19 @@ void Scene01::Render()
     //DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
     //    30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
     map->Render();
+
     spike->Render();
     spikeCol->Render();
+
+    doorsCol[0]->Render();
+    doors[0]->Render();
+    doorsCol[1]->Render();
+    doors[1]->Render();
+    doorsCol[2]->Render();
+    doors[2]->Render();
+    doorsCol[3]->Render();
+    doors[3]->Render();
+
     EFFECT->Render();
     tutorial1->Render();
     tutorial2->Render();

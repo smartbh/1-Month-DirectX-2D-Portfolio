@@ -8,6 +8,7 @@
 #include "Character.h"
 
 #include "Monster.h"
+#include "Bomb.h"
 #include "PlayerBullet.h"
 #include "Player.h"
 

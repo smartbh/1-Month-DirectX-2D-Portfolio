@@ -24,9 +24,9 @@ void EffectManger::EffectPlay(Vector2 _playLocation, int num)
 		tearBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
 		break;
 	case 1:
-		tearBoom->SetWorldPos(_playLocation);
-		tearBoom->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		tearBoom->visible = true;
+		BombBoom->SetWorldPos(_playLocation);
+		BombBoom->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
+		BombBoom->visible = true;
 		break;
 	default:
 		break;
