@@ -3,6 +3,7 @@
 
 void Main::Init()
 {
+	pl = new Player();
 	//익명 스코프
 	{
 		LoadingScene* temp = new LoadingScene();

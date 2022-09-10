@@ -3,7 +3,7 @@
 class Main : public Scene
 {
 private:
-	
+	Player*		pl;
 
 public:
 	virtual void Init() override;

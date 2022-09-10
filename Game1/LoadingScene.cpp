@@ -38,6 +38,16 @@ LoadingScene::~LoadingScene()
 	delete t1;
 }
 
+Player* LoadingScene::getPlayer()
+{
+	return pl;
+}
+
+void LoadingScene::setPlayer(Player* _player)
+{
+	pl = _player;
+}
+
 void LoadingScene::Init()
 {
 }

@@ -7,9 +7,14 @@ public:
 	ObRect* rc;
 	thread* t1;
 
+	Player* pl;
+
 public:
 	LoadingScene();
 	~LoadingScene();
+
+	Player* getPlayer();
+	void	setPlayer(Player* _player);
 
 	virtual void Init() override;
 	virtual void Release() override; //«ÿ¡¶

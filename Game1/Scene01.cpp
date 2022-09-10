@@ -187,6 +187,16 @@ Scene01::~Scene01()
     SafeDelete(map);
 }
 
+Player* Scene01::getPlayer()
+{
+    return pl;
+}
+
+void Scene01::setPlayer(Player* _player)
+{
+    pl = _player;
+}
+
 void Scene01::Init()
 {
 }

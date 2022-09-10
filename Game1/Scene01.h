@@ -3,26 +3,26 @@
 class Scene01 : public Scene
 {
 private:
-	Player*		pl;
-	Monster*	mon;
+	Player* pl;
+	Monster* mon;
 
-	ObImage*	tutorial1;
-	ObImage*	tutorial2;
-	ObImage*	tutorial3;
-	ObImage*	tutorial4;
+	ObImage* tutorial1;
+	ObImage* tutorial2;
+	ObImage* tutorial3;
+	ObImage* tutorial4;
 
-	ObImage*	spike; //스파이크 실험
-	ObRect*		spikeCol;
+	ObImage* spike; //스파이크 실험
+	ObRect* spikeCol;
 
-	ObImage*	rock; //바위
-	ObRect*		rockCol;
+	ObImage* rock; //바위
+	ObRect* rockCol;
 
-	ObImage*	doors[4]; //전후좌우 순
-	ObRect*		doorsCol[4];
+	ObImage* doors[4]; //전후좌우 순
+	ObRect* doorsCol[4];
 
-	ObRect*		bg; //검은배경
+	ObRect* bg; //검은배경
 
-	ObTileMap*	map;
+	ObTileMap* map;
 
 	//길찾기용 변수
 	vector<Tile*> PlWay;
@@ -37,6 +37,9 @@ private:
 public:
 	Scene01();
 	~Scene01();
+
+	Player* getPlayer();
+	void	setPlayer(Player* _player);
 
 	virtual void Init() override;
 	virtual void Release() override; //해제
