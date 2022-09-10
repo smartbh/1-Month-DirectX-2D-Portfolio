@@ -2,7 +2,7 @@
 class scene02 : public Scene
 {
 private:
-	Player* pl;
+
 	Monster* mon;
 
 	ObImage* spike; //스파이크 실험
@@ -31,6 +31,11 @@ private:
 public:
 	scene02();
 	~scene02();
+
+	Player* pl;
+
+	Player* getPlayer();
+	void	setPlayer(Player* _player);
 
 	virtual void Init() override;
 	virtual void Release() override; //해제

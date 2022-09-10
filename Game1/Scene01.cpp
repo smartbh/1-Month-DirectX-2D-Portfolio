@@ -12,128 +12,132 @@ Scene01::Scene01()
     m.lock();
     m.unlock();
 
-    m.lock();
-    {
-        scene02* _scene02 = new scene02();
-        SCENE->AddScene("Scene02", _scene02);
-    }
-    m.unlock();
-
     /// <summary>
     /// 문 제작
     /// </summary>
-    m.lock();//전후좌우순으로 생성
-    //전
-    doorsCol[0] = new ObRect();
-    doorsCol[0]->scale = Vector2(64.0f, 64.0f) * 3.0f;
-    doorsCol[0]->SetWorldPos(Vector2(-100.0f, 250.0f));
-    doorsCol[0]->collider = COLLIDER::RECT;
-    doorsCol[0]->isFilled = false;
+    {
+        m.lock();//전후좌우순으로 생성
+        //전
+        doorsCol[0] = new ObRect();
+        doorsCol[0]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[0]->SetWorldPos(Vector2(-100.0f, 250.0f));
+        doorsCol[0]->collider = COLLIDER::RECT;
+        doorsCol[0]->isFilled = false;
 
-    doors[0] = new ObImage(L"doorOpenUp.png");
-    doors[0]->SetParentRT(*doorsCol[0]);
-    doors[0]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doors[0] = new ObImage(L"doorOpenUp.png");
+        doors[0]->SetParentRT(*doorsCol[0]);
+        doors[0]->scale = Vector2(64.0f, 64.0f) * 2.0f;
 
-    doorsCol[0]->Update();
-    doors[0]->Update();
+        doorsCol[0]->Update();
+        doors[0]->Update();
 
-    //후
-    doorsCol[1] = new ObRect();
-    doorsCol[1]->scale = Vector2(64.0f, 64.0f) * 3.0f;
-    doorsCol[1]->SetWorldPos(Vector2(-100.0f, -300.0f));
-    doorsCol[1]->collider = COLLIDER::RECT;
-    doorsCol[1]->isFilled = false;
+        //후
+        doorsCol[1] = new ObRect();
+        doorsCol[1]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[1]->SetWorldPos(Vector2(-100.0f, -300.0f));
+        doorsCol[1]->collider = COLLIDER::RECT;
+        doorsCol[1]->isFilled = false;
 
-    doors[1] = new ObImage(L"doorOpenDown.png");
-    doors[1]->SetParentRT(*doorsCol[1]);
-    doors[1]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doors[1] = new ObImage(L"doorOpenDown.png");
+        doors[1]->SetParentRT(*doorsCol[1]);
+        doors[1]->scale = Vector2(64.0f, 64.0f) * 2.0f;
 
-    doorsCol[1]->Update();
-    doors[1]->Update();
+        doorsCol[1]->Update();
+        doors[1]->Update();
 
-    //좌
-    doorsCol[2] = new ObRect();
-    doorsCol[2]->scale = Vector2(64.0f, 64.0f) * 3.0f;
-    doorsCol[2]->SetWorldPos(Vector2(-600.0f, 0.0f));
-    doorsCol[2]->collider = COLLIDER::RECT;
-    doorsCol[2]->isFilled = false;
+        //좌
+        doorsCol[2] = new ObRect();
+        doorsCol[2]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[2]->SetWorldPos(Vector2(-600.0f, 0.0f));
+        doorsCol[2]->collider = COLLIDER::RECT;
+        doorsCol[2]->isFilled = false;
 
-    doors[2] = new ObImage(L"doorOpenLeft.png");
-    doors[2]->SetParentRT(*doorsCol[2]);
-    doors[2]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doors[2] = new ObImage(L"doorOpenLeft.png");
+        doors[2]->SetParentRT(*doorsCol[2]);
+        doors[2]->scale = Vector2(64.0f, 64.0f) * 2.0f;
 
-    doorsCol[2]->Update();
-    doors[2]->Update();
+        doorsCol[2]->Update();
+        doors[2]->Update();
 
-    //우
-    doorsCol[3] = new ObRect();
-    doorsCol[3]->scale = Vector2(64.0f, 64.0f) * 3.0f;
-    doorsCol[3]->SetWorldPos(Vector2(400.0f, 0.0f));
-    doorsCol[3]->collider = COLLIDER::RECT;
-    doorsCol[3]->isFilled = false;
+        //우
+        doorsCol[3] = new ObRect();
+        doorsCol[3]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[3]->SetWorldPos(Vector2(400.0f, 0.0f));
+        doorsCol[3]->collider = COLLIDER::RECT;
+        doorsCol[3]->isFilled = false;
 
-    doors[3] = new ObImage(L"doorOpenRight.png");
-    doors[3]->SetParentRT(*doorsCol[3]);
-    doors[3]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doors[3] = new ObImage(L"doorOpenRight.png");
+        doors[3]->SetParentRT(*doorsCol[3]);
+        doors[3]->scale = Vector2(64.0f, 64.0f) * 2.0f;
 
-    doorsCol[3]->Update();
-    doors[3]->Update();
-    m.unlock();
+        doorsCol[3]->Update();
+        doors[3]->Update();
+        m.unlock();
+    }
 
-    m.lock();
-    spikeCol = new ObRect();
-    spikeCol->scale = Vector2(64.0f, 64.0f);
-    spikeCol->isFilled = false;
-    spikeCol->collider = COLLIDER::RECT;
-    spikeCol->SetWorldPos(Vector2(0.0f, 0.0f));
-    m.unlock();
+    /// <summary>
+    /// 함정 연습
+    /// </summary>
+    {
+        m.lock();
+        spikeCol = new ObRect();
+        spikeCol->scale = Vector2(64.0f, 64.0f);
+        spikeCol->isFilled = false;
+        spikeCol->collider = COLLIDER::RECT;
+        spikeCol->SetWorldPos(Vector2(0.0f, 0.0f));
+        m.unlock();
 
-    m.lock();
-    spike = new ObImage(L"spike.png");
-    spike->scale = Vector2(64.0f, 64.0f);
-    spike->SetParentRT(*spikeCol);
-    m.unlock();
+        m.lock();
+        spike = new ObImage(L"spike.png");
+        spike->scale = Vector2(64.0f, 64.0f);
+        spike->SetParentRT(*spikeCol);
+        m.unlock();
+    }
 
+    /// <summary>
+    /// 튜토리얼 이미지들
+    /// </summary>
+    {
+        m.lock();
+        tutorial1 = new ObImage(L"tutorial1.png");
+        tutorial1->scale = Vector2(50.0f, 67.0f) * 2.0f;
+        tutorial1->SetWorldPosX(-400.0f);
+        tutorial1->maxFrame.x = 2;
+        tutorial1->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+        tutorial1->visible = true;
+        tutorial1->Update();
+        m.unlock();
 
-    m.lock();
-    tutorial1 = new ObImage(L"tutorial1.png");
-    tutorial1->scale = Vector2(50.0f, 67.0f) * 2.0f;
-    tutorial1->SetWorldPosX(-400.0f);
-    tutorial1->maxFrame.x = 2;
-    tutorial1->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
-    tutorial1->visible = true;
-    tutorial1->Update();
-    m.unlock();
+        m.lock();
+        tutorial2 = new ObImage(L"tutorial2.png");
+        tutorial2->scale = Vector2(62.0f, 67.0f) * 2.0f;
+        tutorial2->SetWorldPosX(-200.0f);
+        tutorial2->maxFrame.x = 2;
+        tutorial2->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+        tutorial2->visible = true;
+        tutorial2->Update();
+        m.unlock();
 
-    m.lock();
-    tutorial2 = new ObImage(L"tutorial2.png");
-    tutorial2->scale = Vector2(62.0f, 67.0f) * 2.0f;
-    tutorial2->SetWorldPosX(-200.0f);
-    tutorial2->maxFrame.x = 2;
-    tutorial2->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
-    tutorial2->visible = true;
-    tutorial2->Update();
-    m.unlock();
+        m.lock();
+        tutorial3 = new ObImage(L"tutorial3.png");
+        tutorial3->scale = Vector2(46.0f, 67.0f) * 2.0f;
+        tutorial3->SetWorldPosX(0.0f);
+        tutorial3->maxFrame.x = 2;
+        tutorial3->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+        tutorial3->visible = true;
+        tutorial3->Update();
+        m.unlock();
 
-    m.lock();
-    tutorial3 = new ObImage(L"tutorial3.png");
-    tutorial3->scale = Vector2(46.0f, 67.0f) * 2.0f;
-    tutorial3->SetWorldPosX(0.0f);
-    tutorial3->maxFrame.x = 2;
-    tutorial3->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
-    tutorial3->visible = true;
-    tutorial3->Update();
-    m.unlock();
-
-    m.lock();
-    tutorial4 = new ObImage(L"tutorial4.png");
-    tutorial4->scale = Vector2(43.0f, 79.0f) * 2.0f;
-    tutorial4->SetWorldPosX(200.0f);
-    tutorial4->maxFrame.x = 2;
-    tutorial4->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
-    tutorial4->visible = true;
-    tutorial4->Update();
-    m.unlock();
+        m.lock();
+        tutorial4 = new ObImage(L"tutorial4.png");
+        tutorial4->scale = Vector2(43.0f, 79.0f) * 2.0f;
+        tutorial4->SetWorldPosX(200.0f);
+        tutorial4->maxFrame.x = 2;
+        tutorial4->ChangeAnim(ANIMSTATE::LOOP, 0.5f);
+        tutorial4->visible = true;
+        tutorial4->Update();
+        m.unlock();
+    }
 
     m.lock();
     //Sleep(1000);
@@ -175,6 +179,16 @@ Scene01::Scene01()
     //Sleep(1000);
     loadingCount++;
     map->CreateTileCost();
+    m.unlock();
+
+    m.lock();
+    scene02* _scene02 = new scene02();
+    _scene02->pl->setPlayerData(pl->getAttackSpeed(), pl->getAttackDuration(), pl->getHitDuration(),
+        pl->getmoveSpeed(), pl->getHp(), pl->getKey(), pl->getGoldKey(), pl->getBomb()
+    );
+    //_scene02->setPlayer(pl);
+
+    SCENE->AddScene("Scene02", _scene02);
     m.unlock();
 
 

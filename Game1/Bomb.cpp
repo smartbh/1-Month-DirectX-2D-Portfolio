@@ -3,6 +3,9 @@
 Bomb::Bomb()
 {
 	bombCol = new ObRect();
+	bombCol->scale = Vector2();
+	
+	bombImg
 
 }
 

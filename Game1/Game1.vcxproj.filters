@@ -18,9 +18,6 @@
     <ClInclude Include="LoadingScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBullet.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -28,12 +25,6 @@
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="scene02.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="scene03.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="scene04.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Bomb.h">
@@ -57,9 +48,6 @@
     <ClCompile Include="LoadingScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -67,12 +55,6 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="scene02.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="scene03.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="scene04.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Bomb.cpp">

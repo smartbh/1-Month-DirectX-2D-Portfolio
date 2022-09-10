@@ -6,11 +6,12 @@ void Main::Init()
 	pl = new Player();
 	//익명 스코프
 	{
-		LoadingScene* temp = new LoadingScene();
-		SCENE->AddScene("Loading", temp);
+		Scene01* temp = new Scene01();
+		temp->setPlayer(pl);
+		SCENE->AddScene("Scene01", temp);
 	}
 
-	SCENE->ChangeScene("Loading");
+	SCENE->ChangeScene("Scene01");
 }
 
 void Main::Release()

@@ -17,12 +17,21 @@ scene02::scene02()
     bg->color = Color(0.0f, 0.0f, 0.0f, 1.0f);
     bg->isFilled = true;
 
-    pl = new Player();
     //m.unlock();
 }
 
 scene02::~scene02()
 {
+}
+
+Player* scene02::getPlayer()
+{
+    return pl;
+}
+
+void scene02::setPlayer(Player* _player)
+{
+    pl = _player;
 }
 
 void scene02::Init()

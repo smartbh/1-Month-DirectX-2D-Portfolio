@@ -50,6 +50,19 @@ public:
 public:
 	Player();
 	~Player();
+	float getAttackSpeed() { return attackSpeed; }
+	float getAttackDuration() { return attackDuration; }
+	float getHitDuration() { return hitDuration; }
+	float getmoveSpeed() { return moveSpeed; }
+	float getHp() { return hp; }
+
+	int getKey() { return key; }
+	int getGoldKey() { return goldKey; }
+	int getBomb() { return bomb; }
+
+	void	setPlayerData(float	_attackSpeed,
+		float _attackDuration, float _hitDuration,
+		float _moveSpeed, float _hp, int _key, int _goldKey, int _bomb);
 
 	void Update();
 	void Render();

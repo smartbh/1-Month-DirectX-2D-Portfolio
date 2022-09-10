@@ -26,13 +26,16 @@ Player::Player()
 	body->SetParentRT(*col);
 	body->SetLocalPosY(15.0f);
 	
+
+
 	attackSpeed = 1.0f;
 	moveSpeed = 200.0f;
-
 	attackDuration = 0.1f;
 	hitDuration = 0.5f;
-
 	hp = 3.0f;
+	key = 0;
+	goldKey = 0;
+	bomb = 0;
 
 	isDamaged = false;
 
@@ -43,6 +46,21 @@ Player::~Player()
 {
 	SafeDelete(col);
 
+}
+
+void Player::setPlayerData(float _attackSpeed,
+	float _attackDuration, float _hitDuration,
+	float _moveSpeed, float _hp, int _key, int _goldKey, int _bomb)
+{
+	this->attackSpeed = _attackSpeed;
+	this->attackDuration = _attackDuration;
+	this->hitDuration = _hitDuration;
+	this->moveSpeed = _moveSpeed;
+	this->hp = _hp;
+		
+	this->key = _key;
+	this->goldKey = _goldKey;
+	this->bomb = _bomb;
 }
 
 void Player::Update()
@@ -318,19 +336,6 @@ void Player::hit()
 {
 	isDamaged = true;
 	hitDuration = 1.0f;
-
-	//if (hitDuration > 0.0f)
-	//{
-
-	//}
-	//else
-	//{
-	//	for (int i = 0; i < MAX; i++)
-	//	{
-	// 
-	//	}
-	//	attackDuration = 1.0f;
-	//}
 }
 
 ObRect* Player::getCol()
