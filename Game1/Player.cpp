@@ -27,7 +27,6 @@ Player::Player()
 	body->SetLocalPosY(15.0f);
 	
 
-
 	attackSpeed = 1.0f;
 	moveSpeed = 200.0f;
 	attackDuration = 0.1f;
@@ -45,22 +44,23 @@ Player::Player()
 Player::~Player()
 {
 	SafeDelete(col);
-
+	SafeDelete(head);
+	SafeDelete(body);
 }
 
 void Player::setPlayerData(float _attackSpeed,
 	float _attackDuration, float _hitDuration,
 	float _moveSpeed, float _hp, int _key, int _goldKey, int _bomb)
 {
-	this->attackSpeed = _attackSpeed;
-	this->attackDuration = _attackDuration;
-	this->hitDuration = _hitDuration;
-	this->moveSpeed = _moveSpeed;
-	this->hp = _hp;
-		
-	this->key = _key;
-	this->goldKey = _goldKey;
-	this->bomb = _bomb;
+	attackSpeed = _attackSpeed;
+	attackDuration = _attackDuration;
+	hitDuration = _hitDuration;
+	moveSpeed = _moveSpeed;
+	hp = _hp;
+	
+	key = _key;
+	goldKey = _goldKey;
+	bomb = _bomb;
 }
 
 void Player::Update()

@@ -23,7 +23,14 @@ private:
 	ObImage*	body;
 
 	PlayerState plState;
-	
+
+
+	Vector2		lastPos;
+
+	bool		isDamaged;
+
+public:
+
 	float		attackSpeed;
 	float		attackDuration;
 	float       hitDuration;
@@ -34,11 +41,6 @@ private:
 	int			goldKey; //È²±Ý¹æ ¿­¼è
 	int			bomb; //ÆøÅº
 
-	Vector2		lastPos;
-
-	bool		isDamaged;
-
-public:
 
 	void Idle();
 	void Walk();

@@ -183,10 +183,11 @@ Scene01::Scene01()
 
     m.lock();
     scene02* _scene02 = new scene02();
-    _scene02->pl->setPlayerData(pl->getAttackSpeed(), pl->getAttackDuration(), pl->getHitDuration(),
-        pl->getmoveSpeed(), pl->getHp(), pl->getKey(), pl->getGoldKey(), pl->getBomb()
-    );
-    //_scene02->setPlayer(pl);
+    //_scene02->pl->setPlayerData(pl->getAttackSpeed(), pl->getAttackDuration(), pl->getHitDuration(),
+    //    pl->getmoveSpeed(), pl->getHp(), pl->getKey(), pl->getGoldKey(), pl->getBomb()
+    //);
+    //_scene02->setPlayer(this->getPlayer());
+    _scene02->pl = pl;
 
     SCENE->AddScene("Scene02", _scene02);
     m.unlock();
