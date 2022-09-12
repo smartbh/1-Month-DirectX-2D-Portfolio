@@ -369,7 +369,7 @@ void Scene01::LateUpdate()
             {
                 if (map->GetTileState(on) == TILE_WALL)
                 {
-                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 1);
+                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
                     EFFECT->Update();
                     pl->tear[j].StepBack();
                     pl->tear[j].isfire = false;

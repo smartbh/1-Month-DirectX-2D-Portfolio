@@ -91,7 +91,7 @@ void Player::Update()
 
 	}
 
-
+	
 
 	lastPos = col->GetWorldPos();
 
