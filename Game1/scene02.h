@@ -35,6 +35,7 @@ public:
 	Player* pl;
 
 	Player* getPlayer();
+	ObTileMap* getMap();
 	void	setPlayer(Player* _player);
 
 	virtual void Init() override;

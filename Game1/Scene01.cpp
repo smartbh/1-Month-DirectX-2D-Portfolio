@@ -43,7 +43,7 @@ Scene01::Scene01()
         m.lock();//전후좌우순으로 생성
         //전
         doorsCol[0] = new ObRect();
-        doorsCol[0]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doorsCol[0]->scale = Vector2(64.0f, 64.0f * 1.5f);
         doorsCol[0]->SetWorldPos(Vector2(-100.0f, 250.0f));
         doorsCol[0]->collider = COLLIDER::RECT;
         doorsCol[0]->isFilled = false;
@@ -57,7 +57,7 @@ Scene01::Scene01()
 
         //후
         doorsCol[1] = new ObRect();
-        doorsCol[1]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doorsCol[1]->scale = Vector2(64.0f, 64.0f * 1.5f);
         doorsCol[1]->SetWorldPos(Vector2(-100.0f, -300.0f));
         doorsCol[1]->collider = COLLIDER::RECT;
         doorsCol[1]->isFilled = false;
@@ -71,7 +71,7 @@ Scene01::Scene01()
 
         //좌
         doorsCol[2] = new ObRect();
-        doorsCol[2]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doorsCol[2]->scale = Vector2(64.0f * 1.5f, 64.0f);
         doorsCol[2]->SetWorldPos(Vector2(-600.0f, 0.0f));
         doorsCol[2]->collider = COLLIDER::RECT;
         doorsCol[2]->isFilled = false;
@@ -85,7 +85,7 @@ Scene01::Scene01()
 
         //우
         doorsCol[3] = new ObRect();
-        doorsCol[3]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doorsCol[3]->scale = Vector2(64.0f * 1.5f, 64.0f);
         doorsCol[3]->SetWorldPos(Vector2(400.0f, 0.0f));
         doorsCol[3]->collider = COLLIDER::RECT;
         doorsCol[3]->isFilled = false;
@@ -308,7 +308,11 @@ void Scene01::LateUpdate()
             case 0:
                 //위
                 scene02 * _scene02 = new scene02();
+                pl->getCol()->SetWorldPos(Vector2(_scene02->getMap()->GetWorldPos().x / 2.0f
+                    , _scene02->getMap()->GetWorldPos().y / 2.0f));
                 _scene02->pl = pl;
+                //_scene02->pl->getCol()->SetWorldPos(_scene02->getMap()->GetWorldPos());
+                //_scene02->pl->Update();
                 SCENE->AddScene("Scene02", _scene02);
                 SCENE->ChangeScene("Scene02");
                 break;

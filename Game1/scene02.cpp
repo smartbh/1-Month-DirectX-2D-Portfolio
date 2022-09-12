@@ -10,7 +10,7 @@ scene02::scene02()
     map->file = "NormalMap1.txt";
     map->Load();
     map->CreateTileCost();
-    map->SetWorldPos(Vector2(0.0f, 0.0f));
+    //map->SetWorldPos(Vector2(0.0f, 0.0f));
 
     bg = new ObRect();
     bg->scale = Vector2(10000.0f, 10000.0f);
@@ -29,6 +29,11 @@ Player* scene02::getPlayer()
     return pl;
 }
 
+ObTileMap* scene02::getMap()
+{
+    return map;
+}
+
 void scene02::setPlayer(Player* _player)
 {
     pl = _player;
@@ -44,9 +49,11 @@ void scene02::Release()
 
 void scene02::Update()
 {
+    cout << map->GetWorldPos().x << " " << map->GetWorldPos().y << endl;
     map->Update();
     pl->Update();
     bg->Update();
+    CAM->position = pl->GetPos();
 }
 
 void scene02::LateUpdate()

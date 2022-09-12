@@ -53,24 +53,25 @@ public:
 public:
 	Player();
 	~Player();
-	float getAttackSpeed() { return attackSpeed; }
-	float getAttackDuration() { return attackDuration; }
-	float getHitDuration() { return hitDuration; }
-	float getmoveSpeed() { return moveSpeed; }
-	float getHp() { return hp; }
+	ObRect*		getCol();
 
-	int getKey() { return key; }
-	int getGoldKey() { return goldKey; }
-	int getBomb() { return bomb; }
+	float		getAttackSpeed() { return attackSpeed; }
+	float		getAttackDuration() { return attackDuration; }
+	float		getHitDuration() { return hitDuration; }
+	float		getmoveSpeed() { return moveSpeed; }
+	float		getHp() { return hp; }
+
+	int			getKey() { return key; }
+	int			getGoldKey() { return goldKey; }
+	int			getBomb() { return bomb; }
 
 	void		addKey();
 	void		addGoldKey();
 	void		addBomb();
 
-	void Update();
-	void Render();
-	void hit();
-	ObRect* getCol();
-	void StepBack();
+	void		Update();
+	void		Render();
+	void		hit();
+	void		StepBack();
 };
 

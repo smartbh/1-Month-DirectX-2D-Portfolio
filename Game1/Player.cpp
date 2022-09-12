@@ -65,7 +65,7 @@ void Player::addBomb()
 
 void Player::Update()
 {
-	cout << "hp : " << hp << endl;
+	cout << "pl pos : " << col->GetWorldPos().x << col->GetWorldPos().y << endl;
 	//TileScale
 	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 10.0f);
 
