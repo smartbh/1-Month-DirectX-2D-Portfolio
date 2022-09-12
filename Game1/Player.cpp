@@ -34,7 +34,7 @@ Player::Player()
 	hp = 3.0f;
 	key = 0;
 	goldKey = 0;
-	bomb = 0;
+	bomb = 10;
 
 	isDamaged = false;
 
@@ -48,19 +48,19 @@ Player::~Player()
 	SafeDelete(body);
 }
 
-void Player::setPlayerData(float _attackSpeed,
-	float _attackDuration, float _hitDuration,
-	float _moveSpeed, float _hp, int _key, int _goldKey, int _bomb)
+void Player::addKey()
 {
-	attackSpeed = _attackSpeed;
-	attackDuration = _attackDuration;
-	hitDuration = _hitDuration;
-	moveSpeed = _moveSpeed;
-	hp = _hp;
-	
-	key = _key;
-	goldKey = _goldKey;
-	bomb = _bomb;
+	key++;
+}
+
+void Player::addGoldKey()
+{
+	goldKey++;
+}
+
+void Player::addBomb()
+{
+	bomb++;
 }
 
 void Player::Update()
@@ -111,10 +111,13 @@ void Player::Update()
 	body->Update();
 	head->Update();
 
+	if(playerBomb.getIsbombset())
+		playerBomb.Update();
 	for (int i = 0; i < MAX; i++)
 	{
 		tear[i].Update();
 	}
+
 
 }
 
@@ -123,6 +126,9 @@ void Player::Render()
 	col->Render();
 	body->Render();
 	head->Render();
+
+	if (playerBomb.getIsbombset())
+		playerBomb.Render();
 
 	for (int i = 0; i < MAX; i++)
 	{
@@ -326,7 +332,13 @@ void Player::Input()
 	//ÆøÅº»ç¿ë (EÅ°)
 	if (INPUT->KeyDown('E'))
 	{
-
+		if (bomb > 0)
+		{
+			playerBomb.setBomb(col->GetWorldPos());
+			bomb--;
+			if (bomb < 0) bomb = 0;
+		}
+			
 	}
 	
 	moveDir.Normalize();

@@ -10,6 +10,30 @@ Scene01::Scene01()
     m.unlock();
 
     m.lock();
+    //Sleep(1000);
+    loadingCount++;
+    map = new ObTileMap();
+    m.unlock();
+
+    m.lock();
+    //Sleep(1000);
+    loadingCount++;
+    map->file = "startMap.txt";
+    m.unlock();
+
+    m.lock();
+    //Sleep(1000);
+    loadingCount++;
+    map->Load();
+    m.unlock();
+
+    m.lock();
+    //Sleep(1000);
+    loadingCount++;
+    map->CreateTileCost();
+    m.unlock();
+
+    m.lock();
     m.unlock();
 
     /// <summary>
@@ -19,7 +43,7 @@ Scene01::Scene01()
         m.lock();//전후좌우순으로 생성
         //전
         doorsCol[0] = new ObRect();
-        doorsCol[0]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[0]->scale = Vector2(64.0f, 64.0f) * 2.0f;
         doorsCol[0]->SetWorldPos(Vector2(-100.0f, 250.0f));
         doorsCol[0]->collider = COLLIDER::RECT;
         doorsCol[0]->isFilled = false;
@@ -33,7 +57,7 @@ Scene01::Scene01()
 
         //후
         doorsCol[1] = new ObRect();
-        doorsCol[1]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[1]->scale = Vector2(64.0f, 64.0f) * 2.0f;
         doorsCol[1]->SetWorldPos(Vector2(-100.0f, -300.0f));
         doorsCol[1]->collider = COLLIDER::RECT;
         doorsCol[1]->isFilled = false;
@@ -47,7 +71,7 @@ Scene01::Scene01()
 
         //좌
         doorsCol[2] = new ObRect();
-        doorsCol[2]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[2]->scale = Vector2(64.0f, 64.0f) * 2.0f;
         doorsCol[2]->SetWorldPos(Vector2(-600.0f, 0.0f));
         doorsCol[2]->collider = COLLIDER::RECT;
         doorsCol[2]->isFilled = false;
@@ -61,7 +85,7 @@ Scene01::Scene01()
 
         //우
         doorsCol[3] = new ObRect();
-        doorsCol[3]->scale = Vector2(64.0f, 64.0f) * 3.0f;
+        doorsCol[3]->scale = Vector2(64.0f, 64.0f) * 2.0f;
         doorsCol[3]->SetWorldPos(Vector2(400.0f, 0.0f));
         doorsCol[3]->collider = COLLIDER::RECT;
         doorsCol[3]->isFilled = false;
@@ -154,42 +178,10 @@ Scene01::Scene01()
     m.lock();
     //Sleep(1000);
     loadingCount++;
-    mon = new Monster();
+    //mon = new Monster();
     m.unlock();
 
     m.lock();
-    //Sleep(1000);
-    loadingCount++;
-    map = new ObTileMap();
-    m.unlock();
-
-    m.lock();
-    //Sleep(1000);
-    loadingCount++;
-    map->file = "startMap.txt";
-    m.unlock();
-
-    m.lock();
-    //Sleep(1000);
-    loadingCount++;
-    map->Load();
-    m.unlock();
-
-    m.lock();
-    //Sleep(1000);
-    loadingCount++;
-    map->CreateTileCost();
-    m.unlock();
-
-    m.lock();
-    scene02* _scene02 = new scene02();
-    //_scene02->pl->setPlayerData(pl->getAttackSpeed(), pl->getAttackDuration(), pl->getHitDuration(),
-    //    pl->getmoveSpeed(), pl->getHp(), pl->getKey(), pl->getGoldKey(), pl->getBomb()
-    //);
-    //_scene02->setPlayer(this->getPlayer());
-    _scene02->pl = pl;
-
-    SCENE->AddScene("Scene02", _scene02);
     m.unlock();
 
 
@@ -198,7 +190,7 @@ Scene01::Scene01()
 Scene01::~Scene01()
 {
     SafeDelete(pl);
-    SafeDelete(mon);
+    //SafeDelete(mon);
     SafeDelete(map);
 }
 
@@ -276,8 +268,8 @@ void Scene01::Update()
     }
     bg->Update();
     pl->Update();
-    mon->SetTarget(pl->GetPos());
-    mon->Update();
+    //mon->SetTarget(pl->GetPos());
+    //mon->Update();
     map->Update();
     spike->Update();
     spikeCol->Update();
@@ -315,17 +307,20 @@ void Scene01::LateUpdate()
             {
             case 0:
                 //위
+                scene02 * _scene02 = new scene02();
+                _scene02->pl = pl;
+                SCENE->AddScene("Scene02", _scene02);
                 SCENE->ChangeScene("Scene02");
                 break;
-            case 1:
-                //아래
-                break;
-            case 2:
-                //왼
-                break;
-            case 3:
-                //오
-                break;
+            //case 1:
+            //    //아래
+            //    break;
+            //case 2:
+            //    //왼
+            //    break;
+            //case 3:
+            //    //오
+            //    break;
             }
         }
     }
@@ -408,7 +403,7 @@ void Scene01::Render()
     tutorial3->Render();
     tutorial4->Render();
     pl->Render();
-    mon->Render();
+    //mon->Render();
 }
 
 void Scene01::ResizeScreen()

@@ -41,6 +41,7 @@ public:
 	int			goldKey; //È²±Ý¹æ ¿­¼è
 	int			bomb; //ÆøÅº
 
+	Bomb		playerBomb;
 
 	void Idle();
 	void Walk();
@@ -62,9 +63,9 @@ public:
 	int getGoldKey() { return goldKey; }
 	int getBomb() { return bomb; }
 
-	void	setPlayerData(float	_attackSpeed,
-		float _attackDuration, float _hitDuration,
-		float _moveSpeed, float _hp, int _key, int _goldKey, int _bomb);
+	void		addKey();
+	void		addGoldKey();
+	void		addBomb();
 
 	void Update();
 	void Render();

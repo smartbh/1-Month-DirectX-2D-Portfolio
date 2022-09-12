@@ -2,15 +2,18 @@
 class Bomb
 {
 private:
-	ObImage*	bombImg;
-	ObRect*		bombCol;
+	ObImage*		bombImg;
+	ObRect*			bombCol;
+	ObCircle*		bombRange;
 
-	bool		isBombSet;
+	bool			isBombSet;
+	float			bombTime;
 public:
 	Bomb();
 	~Bomb();
 
-	void		setBomb(); // ÆøÅº ³õ±â
+	bool		getIsbombset() { return isBombSet;  }
+	void		setBomb(Vector2 _locatedBomb); // ÆøÅº ³õ±â
 	void		explodeBomb(); //ÆøÅº ÅÍÆ®¸®±â
 	void		Update();
 	void		Render();

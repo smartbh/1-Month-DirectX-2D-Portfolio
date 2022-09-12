@@ -39,6 +39,8 @@ public:
 		col->SetWorldPos(pos);
 	}
 
+	void playTearEffect(Vector2 _tearLocate);
+
 
 	vector<Vector2>& GetFoot()
 	{
