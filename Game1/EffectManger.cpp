@@ -11,6 +11,9 @@ EffectManger::EffectManger()
 	BombBoom->scale = Vector2(96.0f, 96.0f);
 	BombBoom->maxFrame.x = 16;
 	BombBoom->visible = true;
+
+	SOUND->AddSound("tear_destroy.wav", "TEARPOP");//´«¹° ÅÍÁö´Â ¼Ò¸®
+	SOUND->AddSound("bomb_explosion.wav", "BOMBEXPLODE");//´«¹° ÅÍÁö´Â ¼Ò¸®
 }
 
 EffectManger::~EffectManger()
@@ -24,18 +27,24 @@ void EffectManger::EffectPlay(Vector2 _playLocation, int num)
 	{
 		//ÄÉÀÌ½º 0 = ´«¹°, 1 = ÆøÅº
 	case 0:
+		//tearBoom->Update();
 		tearBoom->visible = true;
 		tearBoom->SetWorldPos(_playLocation);
 		tearBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
-		tearBoom->Render();
+		SOUND->Play("TEARPOP");
+		//tearBoom->Render();
 		break;
 	case 1:
+		//BombBoom->Update();
 		BombBoom->visible = true;
 		BombBoom->SetWorldPos(_playLocation);
 		BombBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
-		BombBoom->Render();
+		SOUND->Play("BOMBEXPLODE");
+		//BombBoom->Render();
 		break;
 	default:
+		tearBoom->visible = false;
+		BombBoom->visible = false;
 		break;
 	}
 }

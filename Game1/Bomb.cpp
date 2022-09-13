@@ -22,7 +22,7 @@ Bomb::Bomb()
 
 	bombTime = 3.0f;
 
-	
+	SOUND->AddSound("bomb_explosion.wav", "BOMBEXPLODE");
 }
 
 Bomb::~Bomb()
@@ -34,6 +34,7 @@ Bomb::~Bomb()
 
 void Bomb::setBomb(Vector2 _locatedBomb)
 {
+	SOUND->Stop("BOMBEXPLODE");
 	bombCol->SetWorldPos(_locatedBomb);
 	bombCol->Update();
 	isBombSet = true;
@@ -66,6 +67,7 @@ void Bomb::Update()
 			bombTime = 1.0f;
 			isBombSet = false;
 			bombImg->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
+			SOUND->Play("BOMBEXPLODE");
 		}
 	}
 }

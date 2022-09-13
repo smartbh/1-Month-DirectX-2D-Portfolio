@@ -10,6 +10,7 @@ void Main::Init()
 	}
 
 	SCENE->ChangeScene("Scene01");
+
 }
 
 void Main::Release()

@@ -6,10 +6,10 @@ Monster::Monster()
 	col->isFilled = false;
 	col->scale = Vector2(128.0f, 127.0f);
 
-	img = new ObImage(L"boss.bmp");
+	img = new ObImage(L"boss_1.png");
 	img->SetParentRT(*col);
 	img->scale = Vector2(128.0f, 127.0f);
-	img->maxFrame.y = 8;
+	img->maxFrame.x = 9;
 
 	frameY[Dir_R] = 0;
 	frameY[Dir_L] = 1;

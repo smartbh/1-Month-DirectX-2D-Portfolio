@@ -7,6 +7,7 @@ PlayerBullet::PlayerBullet()
 	col->scale = Vector2(32.0f, 32.0f);
 	col->isFilled = false;
 	col->visible = true;
+	col->SetWorldPos(Vector2(1000.0f, 1000.0f));
 
 	bullet = new ObImage(L"tear.png");
 	bullet->SetParentRT(*col);
@@ -23,6 +24,8 @@ PlayerBullet::PlayerBullet()
 
 	isfire = false;
 
+	SOUND->AddSound("tear_fire.wav", "PLATTACK");//공격소리
+	
 	damage = 1.0f;
 }
 
@@ -34,13 +37,14 @@ PlayerBullet::~PlayerBullet()
 
 bool PlayerBullet::Shoot(Vector2 fireDir, float scalar, Vector2 firePos)
 {
+	SOUND->Stop("PLATTACK");
 	if (!isfire)
 	{
 		isfire = true;
 		col->SetWorldPos(firePos);
 		this->fireDir = fireDir;
 		this->scalar = scalar;
-
+		SOUND->Play("PLATTACK");
 		return true;
 	}
 
@@ -84,7 +88,7 @@ void PlayerBullet::StepBack() //벽 타일맵에 막힐시
 
 	col->Update();
 	bullet->Update();
-
+	
 }
 
 
