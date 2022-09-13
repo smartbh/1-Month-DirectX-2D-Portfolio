@@ -14,7 +14,7 @@ Player::Player()
 	head = new ObImage(L"playerHeads.png");
 	head->scale = Vector2(32.0f, 29.0f) * 2.0f;
 	head->maxFrame = Int2(2, 4);
-	head->SetLocalPosY(40.0f);
+	head->SetLocalPosY(10.0f);
 	head->SetParentRT(*col);
 
 	//몸
@@ -24,7 +24,7 @@ Player::Player()
 	body->scale = Vector2(36.0f, 29.0f);
 	body->maxFrame = Int2(6, 3);
 	body->SetParentRT(*col);
-	body->SetLocalPosY(15.0f);
+	body->SetLocalPosY(-15.0f);
 	
 
 	attackSpeed = 1.0f;
@@ -35,6 +35,13 @@ Player::Player()
 	key = 0;
 	goldKey = 0;
 	bomb = 10;
+
+	/// <summary>
+	///  UI 만드는 부분
+	/// </summary>
+	{
+
+	}
 
 	isDamaged = false;
 
@@ -65,8 +72,8 @@ void Player::addBomb()
 
 void Player::Update()
 {
-	cout << "hp : " << hp << endl;
-	//cout << "pl pos : " << col->GetWorldPos().x << col->GetWorldPos().y << endl;
+	//cout << "hp : " << hp << endl;
+	cout << "pl pos : " << col->GetWorldPos().x << " " << col->GetWorldPos().y << endl;
 	//TileScale
 	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 10.0f);
 

@@ -8,6 +8,7 @@ enum class PlayerState
 	DEAD
 };
 
+
 //아이템 먹었을시 색깔 바꾸기
 enum class PlayerHeadBodyState
 {

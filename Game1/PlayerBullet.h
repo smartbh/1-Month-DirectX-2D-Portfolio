@@ -46,10 +46,10 @@ public:
 	{
 		foot.resize(4);
 
-		foot[0] = col->GetWorldPos() + Vector2(0.0f, -30.0f) + Vector2(-10.0f, -10.0f);
-		foot[1] = col->GetWorldPos() + Vector2(0.0f, -30.0f) + Vector2(10.0f, -10.0f);
-		foot[2] = col->GetWorldPos() + Vector2(0.0f, -30.0f) + Vector2(-10.0f, 10.0f);
-		foot[3] = col->GetWorldPos() + Vector2(0.0f, -30.0f) + Vector2(10.0f, 10.0f);
+		foot[0] = col->GetWorldPos() + Vector2(0.0f, 0.0f) + Vector2(-10.0f, -10.0f);
+		foot[1] = col->GetWorldPos() + Vector2(0.0f, 0.0f) + Vector2(10.0f, -10.0f);
+		foot[2] = col->GetWorldPos() + Vector2(0.0f, 0.0f) + Vector2(-10.0f, 10.0f);
+		foot[3] = col->GetWorldPos() + Vector2(0.0f, 0.0f) + Vector2(10.0f, 10.0f);
 
 		return foot;
 	}

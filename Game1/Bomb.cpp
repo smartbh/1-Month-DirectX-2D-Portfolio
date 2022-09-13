@@ -21,6 +21,8 @@ Bomb::Bomb()
 	isBombSet = false;
 
 	bombTime = 3.0f;
+
+	
 }
 
 Bomb::~Bomb()

@@ -2,6 +2,8 @@
 
 Scene01::Scene01()
 {
+
+
     m.lock();
     bg = new ObRect();
     bg->scale = Vector2(10000.0f, 10000.0f);
@@ -173,6 +175,7 @@ Scene01::Scene01()
     //Sleep(1000);
     loadingCount++;
     pl = new Player();
+    pl->getCol()->SetWorldPos(Vector2(-100.0f, 0.0f));
     m.unlock();
 
     m.lock();
@@ -278,7 +281,7 @@ void Scene01::Update()
     map->Update();
     spike->Update();
     spikeCol->Update();
-    CAM->position = pl->GetPos();
+    CAM->position = Vector2(-100.0f, 0.0f);
 }
 
 void Scene01::LateUpdate()
@@ -313,8 +316,7 @@ void Scene01::LateUpdate()
             case 0:
                 //À§
                 scene02 * _scene02 = new scene02();
-                pl->getCol()->SetWorldPos(Vector2(_scene02->getMap()->GetWorldPos().x / 2.0f
-                    , _scene02->getMap()->GetWorldPos().y / 2.0f));
+                pl->getCol()->SetWorldPos(_scene02->doorsCol->GetWorldPos() + Vector2(0.0f, 100.0f));
                 _scene02->pl = pl;
                 SCENE->AddScene("Scene02", _scene02);
                 SCENE->ChangeScene("Scene02");
@@ -387,9 +389,7 @@ void Scene01::LateUpdate()
 void Scene01::Render()
 {
     bg->Render();
-    //                                          L  T        R       B
-    //DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
-    //    30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
+
     map->Render();
 
     spike->Render();

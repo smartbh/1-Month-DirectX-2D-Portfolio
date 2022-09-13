@@ -27,11 +27,13 @@ void EffectManger::EffectPlay(Vector2 _playLocation, int num)
 		tearBoom->visible = true;
 		tearBoom->SetWorldPos(_playLocation);
 		tearBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+		tearBoom->Render();
 		break;
 	case 1:
 		BombBoom->visible = true;
 		BombBoom->SetWorldPos(_playLocation);
 		BombBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+		BombBoom->Render();
 		break;
 	default:
 		break;

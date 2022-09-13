@@ -3,11 +3,9 @@
 
 void Main::Init()
 {
-	pl = new Player();
 	//ÀÍ¸í ½ºÄÚÇÁ
 	{
 		Scene01* temp = new Scene01();
-		temp->setPlayer(pl);
 		SCENE->AddScene("Scene01", temp);
 	}
 
@@ -31,6 +29,9 @@ void Main::LateUpdate()
 
 void Main::Render()
 {
+	//                                          L  T        R       B
+	DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
+		30.0f, L"ÈŞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
 	SCENE->Render();
 }
 

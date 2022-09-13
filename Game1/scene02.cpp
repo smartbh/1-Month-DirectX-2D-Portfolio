@@ -13,19 +13,42 @@ scene02::scene02()
     bg->color = Color(0.0f, 0.0f, 0.0f, 1.0f);
     bg->isFilled = true;
 
+    doorsCol = new ObRect();
+    doorsCol->scale = Vector2(64.0f, 64.0f * 1.5f);
+    doorsCol->SetWorldPos(Vector2(map->GetWorldPos().x + 400.0f, map->GetWorldPos().y + 50.0f));
+    doorsCol->collider = COLLIDER::RECT;
+    doorsCol->isFilled = false;
 
-    doorsCol[0] = new ObRect();
-    doorsCol[0]->scale = Vector2(64.0f, 64.0f * 1.5f);
-    doorsCol[0]->SetWorldPos(Vector2(map->GetWorldPos().x + 400.0f, map->GetWorldPos().y + 50.0f));
-    doorsCol[0]->collider = COLLIDER::RECT;
-    doorsCol[0]->isFilled = false;
+    doors = new ObImage(L"doorOpenDown.png");
+    doors->SetParentRT(*doorsCol);
+    doors->scale = Vector2(64.0f, 64.0f) * 2.0f;
 
-    doors[0] = new ObImage(L"doorOpenDown.png");
-    doors[0]->SetParentRT(*doorsCol[0]);
-    doors[0]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+    doorsCol->Update();
+    doors->Update();
 
-    doorsCol[0]->Update();
-    doors[0]->Update();
+    for (int i = 0; i < 4; i++)
+    {
+        rockCol[i] = new ObRect();
+        rockCol[i]->scale = Vector2(32.0f, 32.0f) * 2.0f;
+        rockCol[i]->isFilled = false;
+        rockCol[i]->collider = COLLIDER::RECT;
+
+        rockImg[i] = new ObImage(L"Rock.png");
+        rockImg[i]->SetParentRT(*rockCol[i]);
+        rockImg[i]->scale = Vector2(32.0f, 32.0f) * 2.0f;
+    }
+
+    rockCol[0]->SetWorldPos(Vector2(map->GetWorldPos().x + 200.0f, 0.0f));
+    rockCol[1]->SetWorldPos(Vector2(map->GetWorldPos().x + 600.0f, 0.0f));
+    rockCol[2]->SetWorldPos(Vector2(map->GetWorldPos().x + 200.0f, map->GetWorldPos().y + 200.0f));
+    rockCol[3]->SetWorldPos(Vector2(map->GetWorldPos().x + 600.0f, map->GetWorldPos().y + 200.0f));
+    
+    for (int i = 0; i < 4; i++)
+    {
+        rockCol[i]->Update();
+        rockImg[i]->Update();
+    }
+
 }
 
 scene02::~scene02()
@@ -62,19 +85,24 @@ void scene02::Update()
     map->Update();
     pl->Update();
     bg->Update();
-    CAM->position = pl->GetPos();
+    CAM->position = Vector2(-300.0f, -100.0f);
 }
 
 void scene02::LateUpdate()
 {
+    for(int i = 0; i<4; i++)
+    {
+        if (rockCol[i]->Intersect(pl->getCol()))
+            pl->StepBack();
+    }
+
     //문에 들어가면 다른 씬 나오게
 
-    if (doorsCol[0]->Intersect(pl->getCol()))
+    if (doorsCol->Intersect(pl->getCol()))
     {
 
         Scene01* _scene01 = new Scene01();
-        pl->getCol()->SetWorldPos(Vector2(_scene01->getMap()->GetWorldPos().x / 2.0f
-            , _scene01->getMap()->GetWorldPos().y / 2.0f));
+        pl->getCol()->SetWorldPos(Vector2(-100.0f, 110.0f));
         _scene01->pl = pl;
         SCENE->AddScene("Scene01", _scene01);
         SCENE->ChangeScene("Scene01");
@@ -121,8 +149,21 @@ void scene02::LateUpdate()
                     pl->tear[j].isfire = false;
                 }
             }
+
+            if(pl->tear[j].col->Intersect(rockCol[i]))
+            {
+                EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
+                EFFECT->Update();
+                pl->tear[j].StepBack();
+                pl->tear[j].isfire = false;
+            }
         }
+
     }
+
+
+
+    
 }
 
 void scene02::Render()
@@ -130,8 +171,13 @@ void scene02::Render()
     bg->Render();
     map->Render();
     EFFECT->Render();
-    doorsCol[0]->Render();
-    doors[0]->Render();
+    for (int i = 0; i < 4; i++)
+    {
+        rockCol[i]->Render();
+        rockImg[i]->Render();
+    }
+    doorsCol->Render();
+    doors->Render();
     pl->Render();
 }
 

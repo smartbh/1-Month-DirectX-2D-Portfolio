@@ -8,11 +8,8 @@ private:
 	ObImage*		spike; //스파이크 실험
 	ObRect*			spikeCol;
 
-	ObImage*		rock[8]; //바위
-	ObRect*			rockCol[8];
-
-	ObImage*		doors[4]; //전후좌우 순
-	ObRect*			doorsCol[4];
+	ObImage*		rockImg[4]; //바위
+	ObRect*			rockCol[4];
 
 	ObRect*			bg; //검은배경
 
@@ -32,17 +29,21 @@ public:
 	scene02();
 	~scene02();
 
-	Player* pl;
+	ObImage* doors; //전후좌우 순
+	ObRect* doorsCol;
 
-	Player* getPlayer();
-	ObTileMap* getMap();
-	void	setPlayer(Player* _player);
+	Player*			pl;
 
-	virtual void Init() override;
-	virtual void Release() override; //해제
-	virtual void Update() override;
-	virtual void LateUpdate() override;//갱신
-	virtual void Render() override;
-	virtual void ResizeScreen() override;
+	Player*			getPlayer();
+	ObTileMap*		getMap();
+	void			setPlayer(Player* _player);
+
+public:
+	virtual void	Init() override;
+	virtual void	Release() override; //해제
+	virtual void	Update() override;
+	virtual void	LateUpdate() override;//갱신
+	virtual void	Render() override;
+	virtual void	ResizeScreen() override;
 };
 
