@@ -204,6 +204,11 @@ void Scene01::setPlayer(Player* _player)
     pl = _player;
 }
 
+ObTileMap* Scene01::getMap()
+{
+    return map;
+}
+
 void Scene01::Init()
 {
 }
@@ -311,8 +316,6 @@ void Scene01::LateUpdate()
                 pl->getCol()->SetWorldPos(Vector2(_scene02->getMap()->GetWorldPos().x / 2.0f
                     , _scene02->getMap()->GetWorldPos().y / 2.0f));
                 _scene02->pl = pl;
-                //_scene02->pl->getCol()->SetWorldPos(_scene02->getMap()->GetWorldPos());
-                //_scene02->pl->Update();
                 SCENE->AddScene("Scene02", _scene02);
                 SCENE->ChangeScene("Scene02");
                 break;

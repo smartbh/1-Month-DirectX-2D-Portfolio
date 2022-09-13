@@ -45,10 +45,10 @@ void Bomb::explodeBomb()
 
 void Bomb::Update()
 {
-	bombCol->Update();
-	bombImg->Update();
 
 	if (isBombSet) {
+		bombCol->Update();
+		bombImg->Update();
 		EFFECT->Update();
 		bombTime -= DELTA;
 		if (bombTime > 0.0f)
@@ -59,6 +59,7 @@ void Bomb::Update()
 		else
 		{
 			bombCol->Update();
+			bombImg->Update();
 			explodeBomb();
 			bombTime = 1.0f;
 			isBombSet = false;
@@ -69,8 +70,11 @@ void Bomb::Update()
 
 void Bomb::Render()
 {
-	bombCol->Render();
-	bombImg->Render();
-	if(isBombSet)
+
+	if (isBombSet) {
+		bombCol->Render();
+		bombImg->Render();
 		EFFECT->Render();
+	}
 }
+		

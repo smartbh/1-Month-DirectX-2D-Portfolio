@@ -3,30 +3,30 @@ class scene02 : public Scene
 {
 private:
 
-	Monster* mon;
+	Monster*		mon;
 
-	ObImage* spike; //스파이크 실험
-	ObRect* spikeCol;
+	ObImage*		spike; //스파이크 실험
+	ObRect*			spikeCol;
 
-	ObImage* rock; //바위
-	ObRect* rockCol;
+	ObImage*		rock[8]; //바위
+	ObRect*			rockCol[8];
 
-	ObImage* doors[4]; //전후좌우 순
-	ObRect* doorsCol[4];
+	ObImage*		doors[4]; //전후좌우 순
+	ObRect*			doorsCol[4];
 
-	ObRect* bg; //검은배경
+	ObRect*			bg; //검은배경
 
-	ObTileMap* map;
+	ObTileMap*		map;
 
 	//길찾기용 변수
-	vector<Tile*> PlWay;
+	vector<Tile*>	PlWay;
 
 	//이동시킬 위치
-	Vector2		PlDest;
-	Vector2		PlSour;
+	Vector2			PlDest;
+	Vector2			PlSour;
 
 	//비율
-	float		g;
+	float			g;
 
 public:
 	scene02();

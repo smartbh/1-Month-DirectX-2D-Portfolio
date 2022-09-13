@@ -3,7 +3,7 @@
 class Scene01 : public Scene
 {
 private:
-	Player* pl;
+	
 	//Monster* mon;
 
 	ObImage* tutorial1;
@@ -35,11 +35,14 @@ private:
 	float		g;
 
 public:
+	Player* pl;
+
 	Scene01();
 	~Scene01();
 
 	Player* getPlayer();
 	void	setPlayer(Player* _player);
+	ObTileMap* getMap();
 
 	virtual void Init() override;
 	virtual void Release() override; //«ÿ¡¶
