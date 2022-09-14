@@ -73,7 +73,7 @@ void Player::addBomb()
 void Player::Update()
 {
 	//cout << "hp : " << hp << endl;
-	cout << "pl pos : " << col->GetWorldPos().x << " " << col->GetWorldPos().y << endl;
+	//cout << "pl pos : " << col->GetWorldPos().x << " " << col->GetWorldPos().y << endl;
 	//TileScale
 	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 10.0f);
 
@@ -123,7 +123,8 @@ void Player::Update()
 		playerBomb.Update();
 	for (int i = 0; i < MAX; i++)
 	{
-		tear[i].Update();
+		//if (tear[i].isfire)
+			tear[i].Update();
 	}
 
 
@@ -140,7 +141,8 @@ void Player::Render()
 
 	for (int i = 0; i < MAX; i++)
 	{
-		tear[i].Render();
+		//if(tear[i].isfire)
+			tear[i].Render();
 	}
 
 }

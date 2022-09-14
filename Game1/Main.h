@@ -4,6 +4,11 @@ class Main : public Scene
 {
 private:
 	Player*		pl;
+	ObImage*	Item;
+	ObImage*	ItemBar;
+	ObImage*	coin;
+	ObImage*	key;
+	ObImage*	Bomb;
 
 public:
 	virtual void Init() override;

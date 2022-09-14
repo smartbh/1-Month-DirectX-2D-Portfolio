@@ -9,15 +9,18 @@ public:
 	Vector2		lastPos;
 	vector<Vector2> foot;
 	float		scalar;
-	float		tearBoomTime;
 
 	bool		isfire;
+	bool		isBlock;
+
+	float		tearBoomTime = 0.7f;
 
 	PlayerBullet();
 	~PlayerBullet();
 
 	bool		Shoot(Vector2 fireDir, float scalar, Vector2 firePos);
 	void		Update();
+	void		LateUpdate();
 	void		Render();
 
 private:
@@ -39,7 +42,7 @@ public:
 		col->SetWorldPos(pos);
 	}
 
-	void playTearEffect(Vector2 _tearLocate);
+	void playTearEffect();
 
 
 	vector<Vector2>& GetFoot()

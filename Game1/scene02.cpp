@@ -143,19 +143,41 @@ void scene02::LateUpdate()
             {
                 if (map->GetTileState(on) == TILE_WALL)
                 {
-                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
-                    EFFECT->Update();
-                    pl->tear[j].StepBack();
-                    pl->tear[j].isfire = false;
+                    if (map->GetTileState(on) == TILE_WALL)
+                    {
+                        pl->tear[j].playTearEffect();
+                        //pl->tear[j].col->visible = true;
+                        //pl->tear[j].bullet->visible = false;
+                        //pl->tear[j].bulletDead->visible = true;
+
+                        //la = pl->tear[j].bullet->GetWorldPos();
+                        //pl->tear[j].col->SetWorldPos(Vector2(999.0f, 999.0f));
+
+                        //pl->tear[j].bulletDead->SetWorldPos(la);
+                        //pl->tear[j].bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+
+                        //pl->tear[j].col->Update();
+                        //pl->tear[j].bulletDead->Update();
+
+                    }
                 }
             }
 
             if(pl->tear[j].col->Intersect(rockCol[i]))
             {
-                EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
-                EFFECT->Update();
-                pl->tear[j].StepBack();
-                pl->tear[j].isfire = false;
+                pl->tear[j].playTearEffect();
+ /*               pl->tear[j].col->visible = true;
+                pl->tear[j].bullet->visible = false;
+                pl->tear[j].bulletDead->visible = true;
+
+                la = pl->tear[j].bullet->GetWorldPos();
+                pl->tear[j].col->SetWorldPos(Vector2(999.0f, 999.0f));
+
+                pl->tear[j].bulletDead->SetWorldPos(la);
+                pl->tear[j].bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+
+                pl->tear[j].col->Update();
+                pl->tear[j].bulletDead->Update();*/
             }
         }
 

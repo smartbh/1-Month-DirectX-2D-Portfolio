@@ -181,7 +181,7 @@ Scene01::Scene01()
     m.lock();
     //Sleep(1000);
     loadingCount++;
-    //mon = new Monster();
+    mon = new Monster();
     m.unlock();
 
     m.lock();
@@ -193,7 +193,7 @@ Scene01::Scene01()
 Scene01::~Scene01()
 {
     SafeDelete(pl);
-    //SafeDelete(mon);
+    SafeDelete(mon);
     SafeDelete(map);
 }
 
@@ -222,6 +222,12 @@ void Scene01::Release()
 
 void Scene01::Update()
 {
+    /*for (int i = 0; i < MAX; i++)
+    {
+        pl->tear
+
+    }
+    la = */
     ImGui::SliderFloat2("Scale", (float*)&map->scale, 0.0f, 100.0f);
 
     //우클릭햇을때
@@ -276,8 +282,8 @@ void Scene01::Update()
     }
     bg->Update();
     pl->Update();
-    //mon->SetTarget(pl->GetPos());
-    //mon->Update();
+    mon->SetTarget(pl->GetPos());
+    mon->Update();
     map->Update();
     spike->Update();
     spikeCol->Update();
@@ -374,10 +380,19 @@ void Scene01::LateUpdate()
             {
                 if (map->GetTileState(on) == TILE_WALL)
                 {
-                    EFFECT->EffectPlay(pl->tear[j].GetPos(), 0);
-                    EFFECT->Update();
-                    pl->tear[j].StepBack();
-                    pl->tear[j].isfire = false;
+                    pl->tear[j].playTearEffect();
+                        //pl->tear[j].col->visible = true;
+                        //pl->tear[j].bullet->visible = false;
+                        //pl->tear[j].bulletDead->visible = true;
+
+                        //la = pl->tear[j].bullet->GetWorldPos();
+                        //pl->tear[j].col->SetWorldPos(Vector2(999.0f, 999.0f));
+
+                        //pl->tear[j].bulletDead->SetWorldPos(la);
+                        //pl->tear[j].bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+
+                        //pl->tear[j].col->Update();
+                        //pl->tear[j].bulletDead->Update();
                 }
             }
         }
@@ -404,13 +419,12 @@ void Scene01::Render()
     doorsCol[3]->Render();
     doors[3]->Render();
 
-    EFFECT->Render();
     tutorial1->Render();
     tutorial2->Render();
     tutorial3->Render();
     tutorial4->Render();
     pl->Render();
-    //mon->Render();
+    mon->Render();
 }
 
 void Scene01::ResizeScreen()

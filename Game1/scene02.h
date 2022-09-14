@@ -24,6 +24,7 @@ private:
 
 	//∫Ò¿≤
 	float			g;
+	Vector2 la;
 
 public:
 	scene02();

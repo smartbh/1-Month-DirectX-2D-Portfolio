@@ -17,15 +17,17 @@ PlayerBullet::PlayerBullet()
 	bullet->frame.y = 2;
 
 	bulletDead = new ObImage(L"tear_explode.png");
-	bulletDead->SetParentRT(*col);
+	//bulletDead->SetParentRT(*col);
 	bulletDead->scale = Vector2(64.0f, 64.0f);
 	bulletDead->maxFrame.x = 16;
 	bulletDead->visible = false;
 
 	isfire = false;
+	isBlock = false;
 
 	SOUND->AddSound("tear_fire.wav", "PLATTACK");//공격소리
-	
+	SOUND->AddSound("tear_destroy.wav", "TEARPOP");//눈물 터지는 소리
+
 	damage = 1.0f;
 }
 
@@ -40,7 +42,11 @@ bool PlayerBullet::Shoot(Vector2 fireDir, float scalar, Vector2 firePos)
 	SOUND->Stop("PLATTACK");
 	if (!isfire)
 	{
+		col->visible = true;
+		bullet->visible = true;
+		bulletDead->visible = false;
 		isfire = true;
+		isBlock = false;
 		col->SetWorldPos(firePos);
 		this->fireDir = fireDir;
 		this->scalar = scalar;
@@ -54,7 +60,7 @@ bool PlayerBullet::Shoot(Vector2 fireDir, float scalar, Vector2 firePos)
 void PlayerBullet::Update()
 {
 	lastPos = col->GetWorldPos();
-
+	
 	if (!isfire) return;
 
 	Vector2 velocity = fireDir * scalar;
@@ -63,8 +69,14 @@ void PlayerBullet::Update()
 
 	col->Update();
 	bullet->Update();
-	
+	bulletDead->Update();
 }
+
+void PlayerBullet::LateUpdate()
+{
+
+}
+
 
 void PlayerBullet::Render()
 {
@@ -72,6 +84,7 @@ void PlayerBullet::Render()
 
 	col->Render();
 	bullet->Render();
+	bulletDead->Render();
 	
 }
 
@@ -84,11 +97,35 @@ void PlayerBullet::StepBack() //벽 타일맵에 막힐시
 {
 	//위치, 싱글톤 이펙트매니저
 
-	col->SetWorldPos(lastPos);
+	col->SetWorldPos(lastPos); //벽 위치에서
 
 	col->Update();
 	bullet->Update();
+	bulletDead->SetWorldPos(lastPos);
+	bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+	bulletDead->visible = true;
+	bulletDead->Render();
+	isfire = false;
+	isBlock = true;
 	
+}
+
+void PlayerBullet::playTearEffect()
+{
+	Vector2 _lastPost;
+	col->visible = true;
+	bullet->visible = false;
+	bulletDead->visible = true;
+
+	_lastPost = bullet->GetWorldPos();
+	col->SetWorldPos(Vector2(999.0f, 999.0f));
+
+	bulletDead->SetWorldPos(_lastPost);
+	bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
+
+	col->Update();
+	bulletDead->Update();
+	SOUND->Play("TEARPOP");
 }
 
 
