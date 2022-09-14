@@ -34,14 +34,22 @@ Player::Player()
 	hp = 3.0f;
 	key = 0;
 	goldKey = 0;
+
 	bomb = 10;
 
-	/// <summary>
-	///  UI ¸¸µå´Â ºÎºÐ
-	/// </summary>
-	{
+	//for (int i = 0; i < bomb; i++)
+	//{
+	//	Bomb temp;
+	//	playerBomb.push_back(temp);
+	//}
 
-	}
+	//for (auto i : playerBomb)
+	//{
+	//	cout << i.getIsbombset() << endl;
+	//}
+
+	SOUND->AddSound("player_hurts.wav", "HURT");
+	
 
 	isDamaged = false;
 
@@ -72,13 +80,14 @@ void Player::addBomb()
 
 void Player::Update()
 {
-	//cout << "hp : " << hp << endl;
-	//cout << "pl pos : " << col->GetWorldPos().x << " " << col->GetWorldPos().y << endl;
+	//cout << playerBomb.size() << endl;
+	cout << hp << endl;
+	//cout <<  << endl;
 	//TileScale
-	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 10.0f);
+	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 100.0f);
 
 	//TileSize
-	ImGui::SliderFloat2("MoveSpeed", &moveSpeed, 1.0f, 10.0f);
+	ImGui::SliderFloat2("MoveSpeed", &moveSpeed, 1.0f, 1000.0f);
 
 
 	if (isDamaged) //update¿¡, isDamaged°¡ true¸é
@@ -87,10 +96,11 @@ void Player::Update()
 
 		head->color = Color(RANDOM->Float(0.5f, 1.0f), 0.5f, 0.5f, 0.5f);
 		body->color = Color(RANDOM->Float(0.5f, 1.0f), 0.5f, 0.5f, 0.5f);
-
+		
 
 		if (hitDuration < 0.0f)
 		{
+			SOUND->Stop("HURT");
 			head->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
 			body->color = Color(0.5f, 0.5f, 0.5f, 0.5f);
 			hp--;
@@ -119,15 +129,21 @@ void Player::Update()
 	body->Update();
 	head->Update();
 
-	if(playerBomb.getIsbombset())
-		playerBomb.Update();
 	for (int i = 0; i < MAX; i++)
 	{
-		//if (tear[i].isfire)
-			tear[i].Update();
+		tear[i].Update();
 	}
 
+	//for (auto i : playerBomb) 
+	//{
+	//	i.Update();
+	//}
 
+	for (int i = 0; i < 99; i++)
+	{
+		if (playerBombs->getIsbombset())
+			playerBombs[i].Update();
+	}
 }
 
 void Player::Render()
@@ -136,15 +152,21 @@ void Player::Render()
 	body->Render();
 	head->Render();
 
-	if (playerBomb.getIsbombset())
-		playerBomb.Render();
-
 	for (int i = 0; i < MAX; i++)
 	{
-		//if(tear[i].isfire)
-			tear[i].Render();
+		tear[i].Render();
 	}
 
+	//for (auto i : playerBomb)
+	//{
+	//	i.Render();
+	//}
+
+	for (int i = 0; i < 99; i++)
+	{
+		if(playerBombs->getIsbombset())
+			playerBombs[i].Render();
+	}
 }
 
 void Player::StepBack() //º® Å¸ÀÏ¸Ê¿¡ ¸·Èú½Ã
@@ -167,6 +189,11 @@ void Player::Idle()
 		plState = PlayerState::WALK;
 		body->ChangeAnim(ANIMSTATE::LOOP, 0.05f);
 	}
+
+	//if (hp <= 0)
+	//{
+	//	plState = PlayerState::DEAD;
+	//}
 }
 
 void Player::Walk()
@@ -183,6 +210,11 @@ void Player::Walk()
 		head->frame.x = 0;
 		body->frame.x = 0;
 	}
+
+	//if (hp <= 0)
+	//{
+	//	plState = PlayerState::DEAD;
+	//}
 
 }
 
@@ -344,11 +376,34 @@ void Player::Input()
 	{
 		if (bomb > 0)
 		{
-			playerBomb.setBomb(col->GetWorldPos());
-			bomb--;
-			if (bomb < 0) bomb = 0;
+			cout << "ÆøÅº ÁøÀÔ" << endl;
+			for (int i = 0; i < 99; i++)
+			{
+				if (!playerBombs[i].getIsbombset()) //ÇöÀç false¸é
+				{
+					playerBombs[i].setBomb(col->GetWorldPos());
+					bomb--;
+					if (bomb < 0) bomb = 0;
+					break;
+				}
+			}
+
+
+			//for (auto i : playerBomb) 
+			//{
+			//	cout << i.getIsbombset() << endl;
+			//	cout << "ÆøÅº ¹Ýº¹¹®" << endl;
+			//	if (!i.getIsbombset()) //¸¸¾à isBombSetÀÌ false¸é ÆøÅº ¼³Ä¡
+			//	{
+			//		cout << "ÆøÅº ¼³Ä¡" << endl;
+			//		i.setBomb(col->GetWorldPos());
+			//		cout << i.getIsbombset() << endl;
+			//		bomb--;
+			//		if (bomb < 0) bomb = 0;
+			//		break;
+			//	}
+			//}
 		}
-			
 	}
 	
 	moveDir.Normalize();
@@ -357,7 +412,8 @@ void Player::Input()
 void Player::hit()
 {
 	isDamaged = true;
-	hitDuration = 1.0f;
+	hitDuration = 0.5f;
+	SOUND->Play("HURT");
 }
 
 ObRect* Player::getCol()

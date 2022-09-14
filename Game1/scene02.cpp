@@ -82,10 +82,17 @@ void scene02::Release()
 void scene02::Update()
 {
     cout << map->GetWorldPos().x << " " << map->GetWorldPos().y << endl;
+
     map->Update();
     pl->Update();
     bg->Update();
-    CAM->position = Vector2(-300.0f, -100.0f);
+    CAM->position = Vector2( -300.0f, -100.0f);
+
+    for (int i = 0; i < 4; i++)
+    {
+        rockCol[i]->Update();
+        rockImg[i]->Update();
+    }
 }
 
 void scene02::LateUpdate()
@@ -100,7 +107,6 @@ void scene02::LateUpdate()
 
     if (doorsCol->Intersect(pl->getCol()))
     {
-
         Scene01* _scene01 = new Scene01();
         pl->getCol()->SetWorldPos(Vector2(-100.0f, 110.0f));
         _scene01->pl = pl;
@@ -146,19 +152,6 @@ void scene02::LateUpdate()
                     if (map->GetTileState(on) == TILE_WALL)
                     {
                         pl->tear[j].playTearEffect();
-                        //pl->tear[j].col->visible = true;
-                        //pl->tear[j].bullet->visible = false;
-                        //pl->tear[j].bulletDead->visible = true;
-
-                        //la = pl->tear[j].bullet->GetWorldPos();
-                        //pl->tear[j].col->SetWorldPos(Vector2(999.0f, 999.0f));
-
-                        //pl->tear[j].bulletDead->SetWorldPos(la);
-                        //pl->tear[j].bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
-
-                        //pl->tear[j].col->Update();
-                        //pl->tear[j].bulletDead->Update();
-
                     }
                 }
             }

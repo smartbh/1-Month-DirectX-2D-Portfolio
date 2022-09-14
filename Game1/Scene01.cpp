@@ -222,12 +222,7 @@ void Scene01::Release()
 
 void Scene01::Update()
 {
-    /*for (int i = 0; i < MAX; i++)
-    {
-        pl->tear
 
-    }
-    la = */
     ImGui::SliderFloat2("Scale", (float*)&map->scale, 0.0f, 100.0f);
 
     //우클릭햇을때
@@ -292,6 +287,16 @@ void Scene01::Update()
 
 void Scene01::LateUpdate()
 {
+
+    for (int i = 0; i < 99; i++)
+    {
+        if (pl->getCol()->Intersect(pl->playerBombs[i].getBombRange()))
+        {
+            pl->hit();
+            pl->playerBombs[i].bombbRangeColOff();
+        }
+    }
+
     //플레이어가 몬스터와 부딪힐시
     /*
     {
@@ -381,18 +386,6 @@ void Scene01::LateUpdate()
                 if (map->GetTileState(on) == TILE_WALL)
                 {
                     pl->tear[j].playTearEffect();
-                        //pl->tear[j].col->visible = true;
-                        //pl->tear[j].bullet->visible = false;
-                        //pl->tear[j].bulletDead->visible = true;
-
-                        //la = pl->tear[j].bullet->GetWorldPos();
-                        //pl->tear[j].col->SetWorldPos(Vector2(999.0f, 999.0f));
-
-                        //pl->tear[j].bulletDead->SetWorldPos(la);
-                        //pl->tear[j].bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
-
-                        //pl->tear[j].col->Update();
-                        //pl->tear[j].bulletDead->Update();
                 }
             }
         }

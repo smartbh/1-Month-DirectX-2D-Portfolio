@@ -17,6 +17,9 @@ private:
 	ObImage*		rock; //바위
 	ObRect*			rockCol;
 
+	ObImage*		addBomb;
+	ObRect*			addBombCol;
+
 	ObImage*		doors[4]; //전후좌우 순
 	
 

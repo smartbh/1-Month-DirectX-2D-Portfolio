@@ -42,7 +42,7 @@ public:
 	int			goldKey; //È²±Ý¹æ ¿­¼è
 	int			bomb; //ÆøÅº
 
-	Bomb		playerBomb;
+	Bomb			playerBombs[9999];
 
 	void Idle();
 	void Walk();
