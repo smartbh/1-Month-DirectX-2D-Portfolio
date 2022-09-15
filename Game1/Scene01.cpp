@@ -313,19 +313,30 @@ void Scene01::LateUpdate()
             switch (i)
             {
             case 0:
+            {
                 //À§
-                scene02 * _scene02 = new scene02();
+                scene02* _scene02 = new scene02();
                 pl->getCol()->SetWorldPos(_scene02->doorsCol->GetWorldPos() + Vector2(0.0f, 100.0f));
                 _scene02->pl = pl;
                 SCENE->AddScene("Scene02", _scene02);
                 SCENE->ChangeScene("Scene02");
                 break;
-            //case 1:
-            //    //¾Æ·¡
-            //    break;
-            //case 2:
-            //    //¿Þ
-            //    break;
+            }
+            case 1:
+                //¾Æ·¡
+                break;
+            case 2:
+                //¿Þ
+            { //Vector2(60.0f, _sceneLeft->getMap()->GetWorldPos().y * -1.0f)
+                SceneKeyFightRoomLeft* _sceneLeft = new SceneKeyFightRoomLeft();
+                _sceneLeft->doorsCol->SetWorldPos(Vector2(_sceneLeft->getMap()->GetWorldPos().x + 1100,
+                                                    _sceneLeft->getMap()->GetWorldPos().y * -1.0f + 400.0f));
+                _sceneLeft->pl = pl;
+                _sceneLeft->pl->getCol()->SetWorldPos(Vector2(20.0f, 1400.0f));
+                SCENE->AddScene("SceneLeftRoom", _sceneLeft);
+                SCENE->ChangeScene("SceneLeftRoom");
+                break;
+            }
             //case 3:
             //    //¿À
             //    break;

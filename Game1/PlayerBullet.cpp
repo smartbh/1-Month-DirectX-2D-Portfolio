@@ -118,7 +118,7 @@ void PlayerBullet::playTearEffect()
 	bulletDead->visible = true;
 
 	_lastPost = bullet->GetWorldPos();
-	col->SetWorldPos(Vector2(999.0f, 999.0f));
+	col->SetWorldPos(Vector2(-666.0f, 666.0f));
 
 	bulletDead->SetWorldPos(_lastPost);
 	bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);

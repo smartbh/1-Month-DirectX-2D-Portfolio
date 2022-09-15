@@ -39,13 +39,16 @@
     <ClInclude Include="addCoin.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGoldRoom.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="SceneKeyFightRoomLeft.h">
-      <Filter>GameObject</Filter>
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneBossRoom.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGoldRoom.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterFlies.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
@@ -87,13 +90,16 @@
     <ClCompile Include="addKey.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBossRoom.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
     <ClCompile Include="SceneGoldRoom.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneKeyFightRoomLeft.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBossRoom.cpp">
+    <ClCompile Include="MonsterFlies.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

@@ -71,9 +71,9 @@ void Player::addKey()
 	key++;
 }
 
-void Player::addGoldKey()
+void Player::addCoin()
 {
-	goldKey++;
+	coin++;
 }
 
 void Player::addBomb()
@@ -135,17 +135,16 @@ void Player::Update()
 	for (int i = 0; i < MAX; i++)
 	{
 		tear[i].Update();
+		//if (abs((col->GetWorldPos() - tear[i].col->GetWorldPos()).x) > maxRange ||
+		//	abs((col->GetWorldPos() - tear[i].col->GetWorldPos()).y) > maxRange)
+		//	tear[i].playTearEffect();
 	}
-
-	//for (auto i : playerBomb) 
-	//{
-	//	i.Update();
-	//}
 
 	for (int i = 0; i < 99; i++)
 	{
 		if (playerBombs->getIsbombset())
 			playerBombs[i].Update();
+		
 	}
 
 	coinUI->Update();

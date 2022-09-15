@@ -20,66 +20,68 @@ enum class PlayerHeadBodyState
 class Player : public Character
 {
 private:
-	ObImage*	head;
-	ObImage*	body;
+	ObImage*		head;
+	ObImage*		body;
 
-	PlayerState plState;
+	PlayerState		plState;
 
 
-	Vector2		lastPos;
+	Vector2			lastPos;
 
-	bool		isDamaged;
+	bool			isDamaged;
 
 public:
 
-	float		attackSpeed;
-	float		attackDuration;
-	float       hitDuration;
-	float		moveSpeed;
-	float		hp;
+	float			attackSpeed;
+	float			attackDuration;
+	float			hitDuration;
+	float			moveSpeed;
+	float			hp;
 
-	int			key; //¹® ¿©´Â ¿­¼è
-	int			goldKey; //È²±Ý¹æ ¿­¼è
-	int			bomb; //ÆøÅº
-	int			coin; //ÆøÅº
+	int				key; //¹® ¿©´Â ¿­¼è
+	int				goldKey; //È²±Ý¹æ ¿­¼è
+	int				bomb; //ÆøÅº
+	int				coin; //µ¿Àü
 
-	ObImage*	ItemUI;
-	ObImage*	ItemBarUI;
-	ObImage*	coinUI;
-	ObImage*	keyUI;
-	ObImage*	BombUI;
+	float			maxRange = 200.0f;
 
-	Bomb			playerBombs[9999];
+	ObImage*		ItemUI;
+	ObImage*		ItemBarUI;
+	ObImage*		coinUI;
+	ObImage*		keyUI;
+	ObImage*		BombUI;
 
-	void Idle();
-	void Walk();
+	Bomb			playerBombs[99];
 
-	void Input();
+	void			Idle();
+	void			Walk();
 
-	PlayerBullet tear[MAX];
+	void			Input();
+
+	PlayerBullet	tear[MAX];
 
 public:
 	Player();
 	~Player();
-	ObRect*		getCol();
+	ObRect*			getCol();
 
-	float		getAttackSpeed() { return attackSpeed; }
-	float		getAttackDuration() { return attackDuration; }
-	float		getHitDuration() { return hitDuration; }
-	float		getmoveSpeed() { return moveSpeed; }
-	float		getHp() { return hp; }
+	float			getAttackSpeed() { return attackSpeed; }
+	float			getAttackDuration() { return attackDuration; }
+	float			getHitDuration() { return hitDuration; }
+	float			getmoveSpeed() { return moveSpeed; }
+	float			getHp() { return hp; }
 
-	//int			getKey() { return key; }
-	//int			getGoldKey() { return goldKey; }
-	//int			getBomb() { return bomb; }
+	void			addKey();
+	void			addCoin();
+	void			addBomb();
+	
+	void			subtractKey() { key--; }
+	void			subtractCoin() { coin--; }
+	void			subtractBomb() { bomb--; }
 
-	void		addKey();
-	void		addGoldKey();
-	void		addBomb();
-
-	void		Update();
-	void		Render();
-	void		hit();
-	void		StepBack();
+	void			Update();
+	void			Render();
+	void			hit();
+	void			StepBack();
 };
 

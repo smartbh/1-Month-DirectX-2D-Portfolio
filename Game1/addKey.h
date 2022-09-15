@@ -6,6 +6,7 @@ private:
 	ObImage*	keyImage;
 public:
 	void        getPlayerKey();
+	ObRect*		getKeyCol() { return keyCol; }
 public:
 	addKey();
 	~addKey();

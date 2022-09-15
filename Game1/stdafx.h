@@ -8,6 +8,7 @@
 #include "Character.h"
 
 #include "Monster.h"
+#include "MonsterFlies.h"
 #include "Bomb.h"
 #include "PlayerBullet.h"
 #include "addBomb.h"
@@ -27,6 +28,7 @@ extern mutex m;
 #include "scene02.h"
 #include "SceneGoldRoom.h"
 #include "SceneBossRoom.h"
+#include "SceneKeyFightRoomLeft.h"
 
 
 
