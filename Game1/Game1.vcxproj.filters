@@ -39,6 +39,15 @@
     <ClInclude Include="addCoin.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="SceneGoldRoom.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneKeyFightRoomLeft.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBossRoom.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -76,6 +85,15 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="addKey.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGoldRoom.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneKeyFightRoomLeft.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBossRoom.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

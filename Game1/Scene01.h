@@ -38,7 +38,7 @@ private:
 	float			g;
 	float			bombMoveDuration = 0.5f;
 
-	Vector2			la;
+	
 
 public:
 	Player*			pl;

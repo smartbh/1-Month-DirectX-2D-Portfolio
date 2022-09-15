@@ -25,4 +25,8 @@ extern mutex m;
 
 #include "Scene01.h"
 #include "scene02.h"
+#include "SceneGoldRoom.h"
+#include "SceneBossRoom.h"
+
+
 

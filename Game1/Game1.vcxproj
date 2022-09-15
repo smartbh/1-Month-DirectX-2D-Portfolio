@@ -32,6 +32,9 @@
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="Scene01.h" />
     <ClInclude Include="scene02.h" />
+    <ClInclude Include="SceneBossRoom.h" />
+    <ClInclude Include="SceneGoldRoom.h" />
+    <ClInclude Include="SceneKeyFightRoomLeft.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +51,9 @@
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="Scene01.cpp" />
     <ClCompile Include="scene02.cpp" />
+    <ClCompile Include="SceneBossRoom.cpp" />
+    <ClCompile Include="SceneGoldRoom.cpp" />
+    <ClCompile Include="SceneKeyFightRoomLeft.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
