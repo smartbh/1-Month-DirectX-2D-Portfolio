@@ -2,7 +2,7 @@
 class addBomb
 {
 private:
-    int         bombNum;
+    int         bombNum = 1;
     ObImage*    addBombImage; //ÆøÅº ¼ö·® ´Ã¸®±â
     ObImage*    addBombImageDouble; //ÆøÅº ¼ö·® ´Ã¸®±â2
     

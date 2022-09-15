@@ -33,6 +33,12 @@
     <ClInclude Include="addBomb.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="addKey.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="addCoin.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -64,6 +70,12 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="addBomb.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="addCoin.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="addKey.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

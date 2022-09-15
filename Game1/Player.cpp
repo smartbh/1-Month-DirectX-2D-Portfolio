@@ -87,10 +87,10 @@ void Player::Update()
 	cout << hp << endl;
 	//cout <<  << endl;
 	//TileScale
-	ImGui::SliderFloat2("TearSpeed", &attackSpeed, 1.0f, 100.0f);
+	ImGui::SliderFloat2("AttackSpeed", &attackSpeed, 0.01f, 100.0f);
 
 	//TileSize
-	ImGui::SliderFloat2("MoveSpeed", &moveSpeed, 1.0f, 1000.0f);
+	ImGui::SliderFloat2("MoveSpeed", &moveSpeed, 0.01f, 1000.0f);
 
 
 	if (isDamaged) //update¿¡, isDamaged°¡ true¸é

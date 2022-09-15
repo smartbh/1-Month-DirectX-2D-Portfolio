@@ -11,9 +11,10 @@
 #include "Bomb.h"
 #include "PlayerBullet.h"
 #include "addBomb.h"
-#include "Player.h"
+#include "addCoin.h"
+#include "addKey.h"
 
-#include "scene02.h"
+#include "Player.h"
 
 
 extern int loadingCount;
@@ -23,4 +24,5 @@ extern mutex m;
 #include "LoadingScene.h"
 
 #include "Scene01.h"
+#include "scene02.h"
 

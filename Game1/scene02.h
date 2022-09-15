@@ -2,12 +2,6 @@
 class scene02 : public Scene
 {
 private:
-
-	Monster*		mon;
-
-	ObImage*		spike; //스파이크 실험
-	ObRect*			spikeCol;
-
 	ObImage*		rockImg[4]; //바위
 	ObRect*			rockCol[4];
 
@@ -17,13 +11,6 @@ private:
 
 	ObTileMap*		map;
 
-	//길찾기용 변수
-	vector<Tile*>	PlWay;
-
-	//이동시킬 위치
-	Vector2			PlDest;
-	Vector2			PlSour;
-
 	//비율
 	float			g;
 	Vector2 la;
@@ -32,8 +19,8 @@ public:
 	scene02();
 	~scene02();
 
-	ObImage* doors; //전후좌우 순
-	ObRect* doorsCol;
+	ObImage*		doors;
+	ObRect*			doorsCol;
 
 	Player*			pl;
 

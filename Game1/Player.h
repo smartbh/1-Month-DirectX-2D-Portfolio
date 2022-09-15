@@ -1,5 +1,5 @@
 #pragma once
-#define MAX 30
+#define MAX 999
 
 enum class PlayerState
 {

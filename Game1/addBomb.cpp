@@ -3,25 +3,6 @@
 addBomb::addBomb()
 {
 
-    addBombCol = new ObRect();
-    addBombCol->scale = Vector2(32.0f, 32.0f);
-    addBombCol->collider = COLLIDER::RECT;
-    addBombCol->isFilled = false;
-
-    addBombImage = new ObImage(L"bomb_add.png");
-    addBombImage->SetParentRT(*addBombCol);
-    addBombImage->scale = Vector2(32.0f, 32.0f);
-
-    addBombColDouble = new ObRect();
-    addBombColDouble->scale = Vector2(32.0f, 32.0f);
-    addBombColDouble->collider = COLLIDER::RECT;
-    addBombColDouble->isFilled = false;
-
-    addBombImage = new ObImage(L"bomb_add2.png");
-    addBombImage->SetParentRT(*addBombColDouble);
-    addBombImage->scale = Vector2(32.0f, 32.0f);
-
-    bombNum = 1;
 }
 
 addBomb::addBomb(int _num)
@@ -29,22 +10,22 @@ addBomb::addBomb(int _num)
     bombNum = _num;
 
     addBombCol = new ObRect();
-    addBombCol->scale = Vector2(32.0f, 32.0f);
+    addBombCol->scale = Vector2(32.0f, 32.0f) * 1.5f;
     addBombCol->collider = COLLIDER::RECT;
     addBombCol->isFilled = false;
 
     addBombImage = new ObImage(L"bomb_add.png");
     addBombImage->SetParentRT(*addBombCol);
-    addBombImage->scale = Vector2(32.0f, 32.0f);
+    addBombImage->scale = Vector2(32.0f, 32.0f) * 1.5f;
 
     addBombColDouble = new ObRect();
-    addBombColDouble->scale = Vector2(32.0f, 32.0f);
+    addBombColDouble->scale = Vector2(32.0f, 32.0f) * 1.5f;
     addBombColDouble->collider = COLLIDER::RECT;
     addBombColDouble->isFilled = false;
 
     addBombImageDouble = new ObImage(L"bomb_add2.png");
     addBombImageDouble->SetParentRT(*addBombColDouble);
-    addBombImageDouble->scale = Vector2(32.0f, 32.0f);
+    addBombImageDouble->scale = Vector2(32.0f, 32.0f) * 1.5f;
 }
 
 addBomb::~addBomb()
@@ -84,14 +65,24 @@ void addBomb::Render()
 
 void addBomb::getPlayerBomb() //ÇÃ·¹ÀÌ¾î°¡ ÆøÅºÀ» ¸ÔÀ¸¸é
 {
-    addBombCol->visible = false;
-    addBombCol->collider = COLLIDER::NONE;
+    switch (bombNum)
+    {
+    case 1:
+        addBombCol->visible = false;
+        addBombCol->collider = COLLIDER::NONE;
 
-    addBombImage->visible = false;
+        addBombImage->visible = false;
+        break;
+    case 2:
+        addBombColDouble->visible = false;
+        addBombColDouble->collider = COLLIDER::NONE;
+
+        addBombImageDouble->visible = false;
+        break;
+    }
 
 
-    addBombColDouble->visible = false;
-    addBombColDouble->collider = COLLIDER::NONE;
 
-    addBombImageDouble->visible = false;
+
+
 }

@@ -3,21 +3,6 @@
 
 void Main::Init()
 {
-	//coin = new ObImage(L"coinUI.png");
-	//coin->scale = Vector2(33.0f, 22.0f) * 2.0f;
-	//coin->space = SPACE::SCREEN;
-	//coin->SetWorldPos(Vector2(-650.0f, 250.0f));
-
-	//key = new ObImage(L"keyUI.png");
-	//key->scale = Vector2(33.0f, 22.0f) * 2.0f;
-	//key->space = SPACE::SCREEN;
-	//key->SetWorldPos(Vector2(-650.0f, 200.0f));
-
-	//Bomb = new ObImage(L"bombUI.png");
-	//Bomb->scale = Vector2(33.0f, 22.0f) * 2.0f;
-	//Bomb->space = SPACE::SCREEN;
-	//Bomb->SetWorldPos(Vector2(-650.0f, 150.0f));
-
 	//익명 스코프
 	{
 		Scene01* temp = new Scene01();
@@ -39,9 +24,6 @@ void Main::Update()
 {
 	SOUND->Play("BGM");
 	SCENE->Update();
-	//coin->Update();
-	//key->Update();
-	//Bomb->Update();
 }
 
 void Main::LateUpdate()
@@ -52,9 +34,6 @@ void Main::LateUpdate()
 void Main::Render()
 {
 	SCENE->Render();
-	//coin->Render();
-	//key->Render();
-	//Bomb->Render();
 }
 
 void Main::ResizeScreen()

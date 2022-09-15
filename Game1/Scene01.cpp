@@ -342,6 +342,10 @@ void Scene01::LateUpdate()
             pl->hit();
             pl->playerBombs[i].bombbRangeColOff();
         }
+        else
+        {
+            pl->playerBombs[i].bombbRangeColOff();
+        }
     }
 
     Int2 on;

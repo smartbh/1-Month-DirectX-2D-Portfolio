@@ -2,6 +2,8 @@
 
 scene02::scene02()
 {
+    
+
     map = new ObTileMap();
     map->file = "NormalMap1.txt";
     map->Load();
@@ -118,7 +120,7 @@ void scene02::LateUpdate()
         addBombItem[0]->getPlayerBomb();
     }
         
-    if (pl->getCol()->Intersect(addBombItem[1]->addBombCol))
+    if (pl->getCol()->Intersect(addBombItem[1]->addBombColDouble))
     {
         pl->bomb += 2;
         addBombItem[1]->getPlayerBomb();

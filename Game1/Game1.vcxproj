@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addBomb.h" />
+    <ClInclude Include="addCoin.h" />
+    <ClInclude Include="addKey.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EffectManger.h" />
@@ -34,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="addBomb.cpp" />
+    <ClCompile Include="addCoin.cpp" />
+    <ClCompile Include="addKey.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EffectManger.cpp" />
