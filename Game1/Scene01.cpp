@@ -2,8 +2,6 @@
 
 Scene01::Scene01()
 {
-
-
     m.lock();
     bg = new ObRect();
     bg->scale = Vector2(10000.0f, 10000.0f);
@@ -287,16 +285,6 @@ void Scene01::Update()
 
 void Scene01::LateUpdate()
 {
-
-    for (int i = 0; i < 99; i++)
-    {
-        if (pl->getCol()->Intersect(pl->playerBombs[i].getBombRange()))
-        {
-            pl->hit();
-            pl->playerBombs[i].bombbRangeColOff();
-        }
-    }
-
     //플레이어가 몬스터와 부딪힐시
     /*
     {
@@ -345,7 +333,17 @@ void Scene01::LateUpdate()
         }
     }
 
-    //눈물과 플레이어 몬스터가 벽에 부딪힐시
+    //눈물과 플레이어 폭탄 몬스터가 벽에 부딪힐시
+
+    for (int i = 0; i < 99; i++)
+    {
+        if (pl->getCol()->Intersect(pl->playerBombs[i].getBombRange()))
+        {
+            pl->hit();
+            pl->playerBombs[i].bombbRangeColOff();
+        }
+    }
+
     Int2 on;
 
     if (map->WorldPosToTileIdx(pl->GetPos(), on))
@@ -367,7 +365,7 @@ void Scene01::LateUpdate()
             }
         }
     }
-
+    //플레이어 <-> 스파이크
     if (spikeCol->Intersect(pl->getCol()))
     {
         pl->hit();
@@ -388,6 +386,30 @@ void Scene01::LateUpdate()
                     pl->tear[j].playTearEffect();
                 }
             }
+        }
+    }
+
+    for (int i = 0; i < 99; i++)
+    {
+        for (int j = 0; j < MAX; j++)
+        {
+            if (pl->tear[j].col->Intersect(pl->playerBombs[i].getBombCol()))
+            {
+                pl->tear[j].playTearEffect();
+                
+                bombMoveDuration -= DELTA;
+                
+                if (bombMoveDuration > 0.0f)
+                {
+                    pl->playerBombs[i].getBombCol()->MoveWorldPos(pl->tear[j].fireDir * 1200.0f * DELTA);
+                }
+                else
+                {
+                    bombMoveDuration = 0.5f;
+                }
+                
+            }
+                
         }
     }
 

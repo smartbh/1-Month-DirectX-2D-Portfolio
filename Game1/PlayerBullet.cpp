@@ -123,6 +123,7 @@ void PlayerBullet::playTearEffect()
 	bulletDead->SetWorldPos(_lastPost);
 	bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
 
+	isfire = false;
 	col->Update();
 	bulletDead->Update();
 	SOUND->Play("TEARPOP");

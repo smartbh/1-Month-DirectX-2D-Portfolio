@@ -3,24 +3,20 @@
 
 void Main::Init()
 {
-	//Item = new ObImage();
-	//ItemBar = new ObImage();
-	//coin = new ObImage();
-	//key = new ObImage();
-	coin = new ObImage(L"coinUI.png");
-	coin->scale = Vector2(33.0f, 22.0f) * 2.0f;
-	coin->space = SPACE::SCREEN;
-	coin->SetWorldPos(Vector2(-600.0f, 100.0f));
+	//coin = new ObImage(L"coinUI.png");
+	//coin->scale = Vector2(33.0f, 22.0f) * 2.0f;
+	//coin->space = SPACE::SCREEN;
+	//coin->SetWorldPos(Vector2(-650.0f, 250.0f));
 
-	key = new ObImage(L"keyUI.png");
-	key->scale = Vector2(33.0f, 22.0f) * 2.0f;
-	key->space = SPACE::SCREEN;
-	key->SetWorldPos(Vector2(-600.0f, 50.0f));
+	//key = new ObImage(L"keyUI.png");
+	//key->scale = Vector2(33.0f, 22.0f) * 2.0f;
+	//key->space = SPACE::SCREEN;
+	//key->SetWorldPos(Vector2(-650.0f, 200.0f));
 
-	Bomb = new ObImage(L"bombUI.png");
-	Bomb->scale = Vector2(33.0f, 22.0f) * 2.0f;
-	Bomb->space = SPACE::SCREEN;
-	Bomb->SetWorldPos(Vector2(-600.0f, 0.0f));
+	//Bomb = new ObImage(L"bombUI.png");
+	//Bomb->scale = Vector2(33.0f, 22.0f) * 2.0f;
+	//Bomb->space = SPACE::SCREEN;
+	//Bomb->SetWorldPos(Vector2(-650.0f, 150.0f));
 
 	//ÀÍ¸í ½ºÄÚÇÁ
 	{
@@ -43,9 +39,9 @@ void Main::Update()
 {
 	SOUND->Play("BGM");
 	SCENE->Update();
-	coin->Update();
-	key->Update();
-	Bomb->Update();
+	//coin->Update();
+	//key->Update();
+	//Bomb->Update();
 }
 
 void Main::LateUpdate()
@@ -55,13 +51,10 @@ void Main::LateUpdate()
 
 void Main::Render()
 {
-	//                                          L  T        R       B
-	DWRITE->RenderText(L"¾È³ç\n¾È³ç", RECT{ 300,100,(long)app.GetWidth(),(long)app.GetHalfHeight() },
-		30.0f, L"ÈÞ¸Õ¸ÅÁ÷Ã¼", Color(1, 0, 0, 1), DWRITE_FONT_WEIGHT_BOLD);
 	SCENE->Render();
-	coin->Render();
-	key->Render();
-	Bomb->Render();
+	//coin->Render();
+	//key->Render();
+	//Bomb->Render();
 }
 
 void Main::ResizeScreen()

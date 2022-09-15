@@ -4,7 +4,7 @@ class Scene01 : public Scene
 {
 private:
 	
-	Monster* mon;
+	Monster*		mon;
 
 	ObImage*		tutorial1;
 	ObImage*		tutorial2;
@@ -36,8 +36,9 @@ private:
 
 	//∫Ò¿≤
 	float			g;
+	float			bombMoveDuration = 0.5f;
 
-	Vector2 la;
+	Vector2			la;
 
 public:
 	Player*			pl;

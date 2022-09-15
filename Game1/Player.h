@@ -41,6 +41,13 @@ public:
 	int			key; //¹® ¿©´Â ¿­¼è
 	int			goldKey; //È²±Ý¹æ ¿­¼è
 	int			bomb; //ÆøÅº
+	int			coin; //ÆøÅº
+
+	ObImage*	ItemUI;
+	ObImage*	ItemBarUI;
+	ObImage*	coinUI;
+	ObImage*	keyUI;
+	ObImage*	BombUI;
 
 	Bomb			playerBombs[9999];
 
@@ -62,9 +69,9 @@ public:
 	float		getmoveSpeed() { return moveSpeed; }
 	float		getHp() { return hp; }
 
-	int			getKey() { return key; }
-	int			getGoldKey() { return goldKey; }
-	int			getBomb() { return bomb; }
+	//int			getKey() { return key; }
+	//int			getGoldKey() { return goldKey; }
+	//int			getBomb() { return bomb; }
 
 	void		addKey();
 	void		addGoldKey();

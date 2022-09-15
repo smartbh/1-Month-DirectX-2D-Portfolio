@@ -3,30 +3,30 @@
 Bomb::Bomb()
 {
 	bombCol = new ObRect();
-	bombCol->scale = Vector2(32.0f, 32.0f);
+	bombCol->scale = Vector2(32.0f, 32.0f) * 1.5f;
 	bombCol->SetWorldPos(Vector2(9999.0f, 9999.0f));
 	bombCol->collider = COLLIDER::RECT;
 	bombCol->isFilled = false;
 	
 	bombImg = new ObImage(L"bomb_state1.png");
 	bombImg->SetParentRT(*bombCol);
-	bombImg->scale = Vector2(32.0f, 32.0f);
+	bombImg->scale = Vector2(32.0f, 32.0f) * 1.5f;
 
 	BombBoom = new ObImage(L"BombExplosion.png");
 	BombBoom->SetParentRT(*bombCol);
-	BombBoom->scale = Vector2(96.0f, 96.0f);
+	BombBoom->scale = Vector2(96.0f, 96.0f) * 1.5f;
 	BombBoom->maxFrame.x = 16;
 
 	bombRange = new ObCircle();
 	bombRange->SetParentRT(*bombCol);
-	bombRange->scale = Vector2(60.0f, 60.0f) * 2.0f;
+	bombRange->scale = Vector2(60.0f, 60.0f) * 2.5f;
 	bombRange->collider = COLLIDER::NONE;
 	bombRange->isFilled = false;
 	bombRange->color = Color(0.8f, 0.5f, 0.5f, 0.5f);
 
 	isBombSet = false;
 
-	bombTime = 1.0f;
+	bombTime = 5.0f;
 
 	SOUND->AddSound("bomb_explosion.wav", "BOMBEXPLODE");
 }
@@ -59,6 +59,7 @@ void Bomb::explodeBomb()
 	bombImg->visible = false;
 	BombBoom->visible = true;
 	bombRange->visible = true;
+	bombCol->collider = COLLIDER::NONE;
 	bombRange->collider = COLLIDER::CIRCLE;
 	BombBoom->SetWorldPos(bombCol->GetWorldPos());
 	BombBoom->ChangeAnim(ANIMSTATE::ONCE, 0.05f);

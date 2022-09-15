@@ -26,6 +26,12 @@ scene02::scene02()
     doorsCol->Update();
     doors->Update();
 
+    addBombItem[0] = new addBomb(1);
+    addBombItem[0]->addBombCol->SetWorldPos(Vector2(map->GetWorldPos().x + 300.0f, map->GetWorldPos().y + 200.0f));
+
+    addBombItem[1] = new addBomb(2);
+    addBombItem[1]->addBombColDouble->SetWorldPos(Vector2(map->GetWorldPos().x + 400.0f, map->GetWorldPos().y + 200.0f));
+
     for (int i = 0; i < 4; i++)
     {
         rockCol[i] = new ObRect();
@@ -93,6 +99,9 @@ void scene02::Update()
         rockCol[i]->Update();
         rockImg[i]->Update();
     }
+
+    addBombItem[0]->Update();
+    addBombItem[1]->Update();
 }
 
 void scene02::LateUpdate()
@@ -102,6 +111,19 @@ void scene02::LateUpdate()
         if (rockCol[i]->Intersect(pl->getCol()))
             pl->StepBack();
     }
+
+    if (pl->getCol()->Intersect(addBombItem[0]->addBombCol))
+    {
+        pl->bomb++;
+        addBombItem[0]->getPlayerBomb();
+    }
+        
+    if (pl->getCol()->Intersect(addBombItem[1]->addBombCol))
+    {
+        pl->bomb += 2;
+        addBombItem[1]->getPlayerBomb();
+    }
+        
 
     //문에 들어가면 다른 씬 나오게
 
@@ -193,6 +215,9 @@ void scene02::Render()
     }
     doorsCol->Render();
     doors->Render();
+    addBombItem[0]->Render();
+    addBombItem[1]->Render();
+
     pl->Render();
 }
 

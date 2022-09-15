@@ -10,6 +10,7 @@
 #include "Monster.h"
 #include "Bomb.h"
 #include "PlayerBullet.h"
+#include "addBomb.h"
 #include "Player.h"
 
 #include "scene02.h"

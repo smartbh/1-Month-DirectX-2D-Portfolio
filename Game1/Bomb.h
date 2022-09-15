@@ -16,7 +16,8 @@ public:
 	void		setBomb(Vector2 _locatedBomb); // ÆøÅº ³õ±â
 	void		explodeBomb(); //ÆøÅº ÅÍÆ®¸®±â
 	ObCircle*	getBombRange() { return bombRange; }
-	void		bombbRangeColOff() { bombRange->collider = COLLIDER::NONE; }
+	ObRect* getBombCol() { return bombCol; }
+	void		bombbRangeColOff() { bombCol->collider = COLLIDER::NONE; bombRange->collider = COLLIDER::NONE; }
 public:
 	Bomb();
 	~Bomb();

@@ -30,6 +30,9 @@
     <ClInclude Include="Bomb.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="addBomb.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -58,6 +61,9 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Bomb.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="addBomb.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

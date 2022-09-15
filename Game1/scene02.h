@@ -11,6 +11,8 @@ private:
 	ObImage*		rockImg[4]; //바위
 	ObRect*			rockCol[4];
 
+	addBomb*		addBombItem[2];
+
 	ObRect*			bg; //검은배경
 
 	ObTileMap*		map;

@@ -2,6 +2,21 @@
 
 Player::Player()
 {
+	coinUI = new ObImage(L"coinUI.png");
+	coinUI->scale = Vector2(33.0f, 22.0f) * 2.0f;
+	coinUI->space = SPACE::SCREEN;
+	coinUI->SetWorldPos(Vector2(-650.0f, 250.0f));
+
+	keyUI = new ObImage(L"keyUI.png");
+	keyUI->scale = Vector2(33.0f, 22.0f) * 2.0f;
+	keyUI->space = SPACE::SCREEN;
+	keyUI->SetWorldPos(Vector2(-650.0f, 200.0f));
+
+	BombUI = new ObImage(L"bombUI.png");
+	BombUI->scale = Vector2(33.0f, 22.0f) * 2.0f;
+	BombUI->space = SPACE::SCREEN;
+	BombUI->SetWorldPos(Vector2(-650.0f, 150.0f));
+
 	col = new ObRect();
 	col->SetWorldPos(Vector2(-500.0f, -200.0f));
 	col->scale = Vector2(48.0f, 60.0f);
@@ -29,28 +44,16 @@ Player::Player()
 
 	attackSpeed = 1.0f;
 	moveSpeed = 200.0f;
-	attackDuration = 0.1f;
+	attackDuration = 0.5f;
 	hitDuration = 0.5f;
 	hp = 3.0f;
 	key = 0;
 	goldKey = 0;
-
-	bomb = 10;
-
-	//for (int i = 0; i < bomb; i++)
-	//{
-	//	Bomb temp;
-	//	playerBomb.push_back(temp);
-	//}
-
-	//for (auto i : playerBomb)
-	//{
-	//	cout << i.getIsbombset() << endl;
-	//}
+	coin = 0;
+	bomb = 0;
 
 	SOUND->AddSound("player_hurts.wav", "HURT");
 	
-
 	isDamaged = false;
 
 	plState = PlayerState::IDLE;
@@ -144,10 +147,36 @@ void Player::Update()
 		if (playerBombs->getIsbombset())
 			playerBombs[i].Update();
 	}
+
+	coinUI->Update();
+	keyUI->Update();
+	BombUI->Update();
 }
 
 void Player::Render()
 {
+	coinUI->Render();
+	keyUI->Render();
+	BombUI->Render();
+
+	wstring bombString = to_wstring(bomb);
+	wstring keyString = to_wstring(key);
+	wstring coinString = to_wstring(coin);
+	//bomb
+	//coin
+	//key
+	//                             -650.0f, 150.0f             L  T        R       B
+	DWRITE->RenderText(coinString, RECT{ 80,137,(long)app.GetWidth(),(long)app.GetHalfHeight() },
+		30.0f, L"ÈÞ¸Õ¸ÅÁ÷Ã¼", Color(1, 1, 1, 1), DWRITE_FONT_WEIGHT_BOLD);
+
+	//                             -650.0f, 150.0f             L  T        R       B
+	DWRITE->RenderText(keyString, RECT{ 80,187,(long)app.GetWidth(),(long)app.GetHalfHeight() },
+		30.0f, L"ÈÞ¸Õ¸ÅÁ÷Ã¼", Color(1, 1, 1, 1), DWRITE_FONT_WEIGHT_BOLD);
+
+	//                             -650.0f, 150.0f             L  T        R       B
+	DWRITE->RenderText(bombString, RECT{ 80,237,(long)app.GetWidth(),(long)app.GetHalfHeight() },
+		30.0f, L"ÈÞ¸Õ¸ÅÁ÷Ã¼", Color(1, 1, 1, 1), DWRITE_FONT_WEIGHT_BOLD);
+
 	col->Render();
 	body->Render();
 	head->Render();
@@ -276,7 +305,7 @@ void Player::Input()
 					break;
 				}
 			}
-			attackDuration = 1.0f;
+			attackDuration = 0.5f;
 		}
 	}
 
@@ -301,7 +330,7 @@ void Player::Input()
 					break;
 				}
 			}
-			attackDuration = 1.0f;
+			attackDuration = 0.5f;
 		}
 	}
 	else if (INPUT->KeyPress(VK_LEFT))
@@ -325,7 +354,7 @@ void Player::Input()
 					break;
 				}
 			}
-			attackDuration = 1.0f;
+			attackDuration = 0.5f;
 		}
 	}
 	else if (INPUT->KeyPress(VK_RIGHT))
@@ -349,7 +378,7 @@ void Player::Input()
 					break;
 				}
 			}
-			attackDuration = 1.0f;
+			attackDuration = 0.5f;
 		}
 	}
 
