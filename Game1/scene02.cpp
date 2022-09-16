@@ -2,8 +2,6 @@
 
 scene02::scene02()
 {
-    
-
     map = new ObTileMap();
     map->file = "NormalMap1.txt";
     map->Load();
@@ -57,6 +55,7 @@ scene02::scene02()
         rockImg[i]->Update();
     }
 
+    SOUND->AddSound("getItem.wav", "GETITEM");
 }
 
 scene02::~scene02()
@@ -118,12 +117,14 @@ void scene02::LateUpdate()
     {
         pl->bomb++;
         addBombItem[0]->getPlayerBomb();
+        SOUND->Play("GETITEM");
     }
         
     if (pl->getCol()->Intersect(addBombItem[1]->addBombColDouble))
     {
         pl->bomb += 2;
         addBombItem[1]->getPlayerBomb();
+        SOUND->Play("GETITEM");
     }
         
 
@@ -183,18 +184,6 @@ void scene02::LateUpdate()
             if(pl->tear[j].col->Intersect(rockCol[i]))
             {
                 pl->tear[j].playTearEffect();
- /*               pl->tear[j].col->visible = true;
-                pl->tear[j].bullet->visible = false;
-                pl->tear[j].bulletDead->visible = true;
-
-                la = pl->tear[j].bullet->GetWorldPos();
-                pl->tear[j].col->SetWorldPos(Vector2(999.0f, 999.0f));
-
-                pl->tear[j].bulletDead->SetWorldPos(la);
-                pl->tear[j].bulletDead->ChangeAnim(ANIMSTATE::ONCE, 0.05f);
-
-                pl->tear[j].col->Update();
-                pl->tear[j].bulletDead->Update();*/
             }
         }
 

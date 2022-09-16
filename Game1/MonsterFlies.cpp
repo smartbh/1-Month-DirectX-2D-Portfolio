@@ -1,4 +1,5 @@
 #include "stdafx.h"
+int monsterDeadLeftRoom = 3;
 
 MonsterFlies::MonsterFlies()
 {
@@ -146,8 +147,12 @@ void MonsterFlies::Dead()
 	range[1]->Update();
 	range[2]->Update();
 
-	isDead = true;
-
+	if (!isDead)
+	{
+		monsterDeadLeftRoom--;
+		isDead = true;
+	}
+		
 	monsterState = MonsterFliesState::IDLE;
 }
 

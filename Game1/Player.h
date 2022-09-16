@@ -5,6 +5,7 @@ enum class PlayerState
 {
 	IDLE,
 	WALK,
+	ITEMUSE,
 	DEAD
 };
 
@@ -16,72 +17,81 @@ enum class PlayerHeadBodyState
 	EVIL
 };
 
-
 class Player : public Character
 {
 private:
-	ObImage*		head;
-	ObImage*		body;
+	ObImage*				plItemUse;
 
-	PlayerState		plState;
+	PlayerState				plState;
 
+	Vector2					lastPos;
 
-	Vector2			lastPos;
+	bool					isDamaged;
 
-	bool			isDamaged;
+	float					animationPlayTime;
 
 public:
 
-	float			attackSpeed;
-	float			attackDuration;
-	float			hitDuration;
-	float			moveSpeed;
-	float			hp;
+	float					attackSpeed;
+	float					attackDuration;
+	float					hitDuration;
+	float					moveSpeed;
+	float					hp;
 
-	int				key; //¹® ¿©´Â ¿­¼è
-	int				goldKey; //È²±Ý¹æ ¿­¼è
-	int				bomb; //ÆøÅº
-	int				coin; //µ¿Àü
+	int						key; //¹® ¿©´Â ¿­¼è
+	int						goldKey; //È²±Ý¹æ ¿­¼è
+	int						bomb; //ÆøÅº
+	int						coin; //µ¿Àü
 
-	float			maxRange = 200.0f;
+	float					maxRange = 200.0f;
 
-	ObImage*		ItemUI;
-	ObImage*		ItemBarUI;
-	ObImage*		coinUI;
-	ObImage*		keyUI;
-	ObImage*		BombUI;
+	ObImage*				ItemUI;
+	ObImage*				ItemBarUI;
+	ObImage*				coinUI;
+	ObImage*				keyUI;
+	ObImage*				BombUI;
+	ObImage*				Hp[3];
 
-	Bomb			playerBombs[99];
+	Bomb					playerBombs[99];
 
-	void			Idle();
-	void			Walk();
+	void					Idle();
+	void					Walk();
+	void					ItemUse();
+	void					Dead();
 
-	void			Input();
+	void					Input();
 
-	PlayerBullet	tear[MAX];
+	PlayerBullet			tear[MAX];
+	PlayerHeadBodyState		plBodyState;
+
+	ObImage*				head;
+	ObImage*				body;
+
+	ObImage*				headEvil;
+	ObImage*				bodyEvil;
 
 public:
 	Player();
 	~Player();
-	ObRect*			getCol();
+	ObRect*					getCol();
 
-	float			getAttackSpeed() { return attackSpeed; }
-	float			getAttackDuration() { return attackDuration; }
-	float			getHitDuration() { return hitDuration; }
-	float			getmoveSpeed() { return moveSpeed; }
-	float			getHp() { return hp; }
+	float					getAttackSpeed() { return attackSpeed; }
+	float					getAttackDuration() { return attackDuration; }
+	float					getHitDuration() { return hitDuration; }
+	float					getmoveSpeed() { return moveSpeed; }
+	float					getHp() { return hp; }
 
-	void			addKey();
-	void			addCoin();
-	void			addBomb();
+	void					addKey();
+	void					addCoin();
+	void					addBomb();
 	
-	void			subtractKey() { key--; }
-	void			subtractCoin() { coin--; }
-	void			subtractBomb() { bomb--; }
+	void					subtractKey() { key--; }
+	void					subtractCoin() { coin--; }
+	void					subtractBomb() { bomb--; }
 
-	void			Update();
-	void			Render();
-	void			hit();
-	void			StepBack();
+	void					Update();
+	void					Render();
+	void					hit();
+	void					StepBack();
 };
 

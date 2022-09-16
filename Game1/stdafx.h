@@ -4,6 +4,7 @@
 
 #include "EffectManger.h"
 
+extern int monsterDeadLeftRoom;
 
 #include "Character.h"
 

@@ -93,9 +93,15 @@ Scene01::Scene01()
         doors[3] = new ObImage(L"doorOpenRight.png");
         doors[3]->SetParentRT(*doorsCol[3]);
         doors[3]->scale = Vector2(64.0f, 64.0f) * 2.0f;
+        doors[3]->visible = false;
+
+        doorUnlock = new ObImage(L"doorRightUnlock.png");
+        doorUnlock->SetParentRT(*doorsCol[3]);
+        doorUnlock->scale = Vector2(64.0f, 64.0f) * 2.0f;
 
         doorsCol[3]->Update();
         doors[3]->Update();
+        doorUnlock->Update();
         m.unlock();
     }
 
@@ -185,7 +191,7 @@ Scene01::Scene01()
     m.lock();
     m.unlock();
 
-
+    SOUND->AddSound("door_open.wav", "DOOROPEN");
 }
 
 Scene01::~Scene01()
@@ -220,7 +226,6 @@ void Scene01::Release()
 
 void Scene01::Update()
 {
-
     ImGui::SliderFloat2("Scale", (float*)&map->scale, 0.0f, 100.0f);
 
     //우클릭햇을때
@@ -284,27 +289,7 @@ void Scene01::Update()
 }
 
 void Scene01::LateUpdate()
-{
-    //플레이어가 몬스터와 부딪힐시
-    /*
-    {
-        hit 애니메이션(번쩍번쩍) 한번 하고
-        체력 1 까이게
-    }
-    
-    */
-
-
-    //눈물이 몬스터에 부딪힐시
-    /*
-    {
-        몬스터도 마찬가지로
-        hit 애니메이션(번쩍번쩍) 한번 하고
-        체력 1 까이게
-        단 눈물 damage에 맞게
-    }
-    */
-    
+{ 
     //문에 들어가면 다른 씬 나오게
     for (int i = 0; i < 4; i++)
     {
@@ -312,34 +297,57 @@ void Scene01::LateUpdate()
         {
             switch (i)
             {
-            case 0:
-            {
-                //위
-                scene02* _scene02 = new scene02();
-                pl->getCol()->SetWorldPos(_scene02->doorsCol->GetWorldPos() + Vector2(0.0f, 100.0f));
-                _scene02->pl = pl;
-                SCENE->AddScene("Scene02", _scene02);
-                SCENE->ChangeScene("Scene02");
-                break;
-            }
-            case 1:
-                //아래
-                break;
-            case 2:
-                //왼
-            { //Vector2(60.0f, _sceneLeft->getMap()->GetWorldPos().y * -1.0f)
-                SceneKeyFightRoomLeft* _sceneLeft = new SceneKeyFightRoomLeft();
-                _sceneLeft->doorsCol->SetWorldPos(Vector2(_sceneLeft->getMap()->GetWorldPos().x + 1100,
-                                                    _sceneLeft->getMap()->GetWorldPos().y * -1.0f + 400.0f));
-                _sceneLeft->pl = pl;
-                _sceneLeft->pl->getCol()->SetWorldPos(Vector2(20.0f, 1400.0f));
-                SCENE->AddScene("SceneLeftRoom", _sceneLeft);
-                SCENE->ChangeScene("SceneLeftRoom");
-                break;
-            }
-            //case 3:
-            //    //오
-            //    break;
+                case 0:
+                {
+                    //위
+                    scene02* _scene02 = new scene02();
+                    pl->getCol()->SetWorldPos(_scene02->doorsCol->GetWorldPos() + Vector2(0.0f, 100.0f));
+                    _scene02->pl = pl;
+                    SCENE->AddScene("Scene02", _scene02);
+                    SCENE->ChangeScene("Scene02");
+                    break;
+                }
+                case 1:
+                    //아래
+                    break;
+                case 2:
+                    //왼
+                { //Vector2(60.0f, _sceneLeft->getMap()->GetWorldPos().y * -1.0f)
+                    SceneKeyFightRoomLeft* _sceneLeft = new SceneKeyFightRoomLeft();
+                    _sceneLeft->doorsCol->SetWorldPos(Vector2(_sceneLeft->getMap()->GetWorldPos().x + 1100,
+                        _sceneLeft->getMap()->GetWorldPos().y * -1.0f + 400.0f));
+                    _sceneLeft->pl = pl;
+                    _sceneLeft->pl->getCol()->SetWorldPos(Vector2(20.0f, 1400.0f));
+                    SCENE->AddScene("SceneLeftRoom", _sceneLeft);
+                    SCENE->ChangeScene("SceneLeftRoom");
+                    break;
+                }
+                case 3:
+                {//오, 열쇠없으면 불가능
+                    if (!isRightDoorOpen)
+                    {
+                        if (pl->key > 0)
+                        {
+                            pl->subtractKey();//키 빼주기
+                            doors[3]->visible = true;
+                            doorUnlock->visible = false;
+                            isRightDoorOpen = true;
+                            SOUND->Play("DOOROPEN");
+                        }
+                    }
+                    else
+                    {
+
+                        SceneGoldRoom* _sceneRight = new SceneGoldRoom();
+                        _sceneRight->pl = pl;
+                        _sceneRight->pl->getCol()->SetWorldPos(Vector2(_sceneRight->getMap()->GetWorldPos().x + 120.0f,
+                            _sceneRight->getMap()->GetWorldPos().y + 300.0f));
+                        _sceneRight->pl->Update();
+                        SCENE->AddScene("SceneRightRoom", _sceneRight);
+                        SCENE->ChangeScene("SceneRightRoom");
+                        break;
+                    }
+                }
             }
         }
     }
@@ -448,6 +456,7 @@ void Scene01::Render()
     doors[2]->Render();
     doorsCol[3]->Render();
     doors[3]->Render();
+    doorUnlock->Render();
 
     tutorial1->Render();
     tutorial2->Render();

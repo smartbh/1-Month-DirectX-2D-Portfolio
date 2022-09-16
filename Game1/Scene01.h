@@ -21,6 +21,7 @@ private:
 	ObRect*			addBombCol;
 
 	ObImage*		doors[4]; //전후좌우 순
+	ObImage*		doorUnlock; //오른쪽 안열린문
 	
 
 	ObRect*			bg; //검은배경
@@ -38,6 +39,7 @@ private:
 	float			g;
 	float			bombMoveDuration = 0.5f;
 
+	bool			isRightDoorOpen = false;
 	
 
 public:

@@ -49,11 +49,7 @@ void SceneKeyFightRoomLeft::Release()
 
 void SceneKeyFightRoomLeft::Update()
 {
-    for (int i = 0; i < 3; i++)
-        if (flies[i].isDead)
-            mosterCount--;
-
-    if (mosterCount > 0) //몬스터가 한마리라도 남아있을경우
+    if (monsterDeadLeftRoom > 0) //몬스터가 한마리라도 남아있을경우
     {
         doorsCol->collider = COLLIDER::NONE;
         door->visible = true;
@@ -61,7 +57,7 @@ void SceneKeyFightRoomLeft::Update()
     }
     else // 몬스터가 모두 죽었을시
     {
-        mosterCount = 0;
+        monsterDeadLeftRoom = 0;
         doorsCol->collider = COLLIDER::RECT;
         door->visible = false;
         doorOpen->visible = true;
@@ -149,15 +145,47 @@ void SceneKeyFightRoomLeft::LateUpdate()
         }
     }
 
+    //몬스터와 플레이어 상호작용
+    //눈물
     for (int j = 0; j < MAX; j++)
     {
-        for(int i = 0; i<3; i++)
+        for (int i = 0; i < 3; i++)
+        {
             if (flies[i].getCol()->Intersect(pl->tear[j].col))
             {
                 pl->tear[j].playTearEffect();
                 flies[i].hit();
             }
+        }
     }
+
+
+    //플레이어
+    for (int i = 0; i < 3; i++)
+    {
+        if (flies[i].getCol()->Intersect(pl->getCol()))
+        {
+            pl->hit();
+        }
+    }
+
+
+    //폭탄
+    for (int i = 0; i < 99; i++)
+    {
+
+        if (pl->getCol()->Intersect(pl->playerBombs[i].getBombRange()))
+        {
+            pl->hit();
+            pl->playerBombs[i].bombbRangeColOff();
+        }
+        else
+        {
+            pl->playerBombs[i].bombbRangeColOff();
+        }
+
+    }
+
 }
 
 void SceneKeyFightRoomLeft::Render()
