@@ -463,7 +463,7 @@ void Scene01::Render()
     tutorial3->Render();
     tutorial4->Render();
     pl->Render();
-    mon->Render();
+    //mon->Render();
 }
 
 void Scene01::ResizeScreen()
