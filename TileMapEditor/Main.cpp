@@ -14,6 +14,7 @@ void Main::Init()
 	tileSize = Int2(20, 20);
 	tileColor = Color(0.5f, 0.5f, 0.5f, 0.5f);
 	tileState = 0;
+
 }
 
 void Main::Release()
