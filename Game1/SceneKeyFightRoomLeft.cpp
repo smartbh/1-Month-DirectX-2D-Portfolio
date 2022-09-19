@@ -17,6 +17,7 @@ SceneKeyFightRoomLeft::SceneKeyFightRoomLeft()
     doorsCol->SetWorldPos(Vector2(map->GetWorldPos().x, map->GetWorldPos().y));
     doorsCol->collider = COLLIDER::RECT;
     doorsCol->isFilled = false;
+    doorsCol->visible = false;
 
     door = new ObImage(L"doorRight.png");
     door->SetParentRT(*doorsCol);

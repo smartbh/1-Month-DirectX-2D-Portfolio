@@ -6,12 +6,13 @@ MonsterFlies::MonsterFlies()
 	col = new ObRect();
 	col->isFilled = false;
 	col->scale = Vector2(34.0f, 14.0f);
+	col->visible = false;
 
 	img = new ObImage(L"fly.png");
 	img->SetParentRT(*col);
 	img->scale = Vector2(34.0f, 14.0f);
 	img->maxFrame.x = 2;
-	img->ChangeAnim(ANIMSTATE::LOOP, 0.1f);
+	img->ChangeAnim(ANIMSTATE::LOOP, 0.05f);
 
 	range[0] = new ObCircle();
 	range[0]->isFilled = false;
@@ -30,6 +31,10 @@ MonsterFlies::MonsterFlies()
 	scale = (float)MonsterFliesState::ATTACK * 2.0f;
 	range[2]->scale = Vector2(scale, scale);
 	range[2]->SetParentRT(*col);
+
+	range[0]->visible = false;
+	range[1]->visible = false;
+	range[2]->visible = false;
 
 	monsterState = MonsterFliesState::IDLE;
 }

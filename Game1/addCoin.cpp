@@ -8,6 +8,7 @@ addCoin::addCoin(int _num)
 	coinCol->scale = Vector2(65.0f, 40.0f);
 	coinCol->collider = COLLIDER::RECT;
 	coinCol->isFilled = false;
+	coinCol->visible = false;
 
 	coinImage = new ObImage(L"coin1.png");
 	coinImage->SetParentRT(*coinCol);
@@ -17,6 +18,7 @@ addCoin::addCoin(int _num)
 	coinDoubleCol->scale = Vector2(65.0f, 40.0f);
 	coinDoubleCol->collider = COLLIDER::RECT;
 	coinDoubleCol->isFilled = false;
+	coinDoubleCol->visible = false;
 
 	coinDoubleImage = new ObImage(L"coin2.png");
 	coinDoubleImage->SetParentRT(*coinDoubleCol);

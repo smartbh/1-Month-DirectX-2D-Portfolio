@@ -47,6 +47,7 @@ Scene01::Scene01()
         doorsCol[0]->SetWorldPos(Vector2(-100.0f, 250.0f));
         doorsCol[0]->collider = COLLIDER::RECT;
         doorsCol[0]->isFilled = false;
+        doorsCol[0]->visible = false;
 
         doors[0] = new ObImage(L"doorOpenUp.png");
         doors[0]->SetParentRT(*doorsCol[0]);
@@ -61,6 +62,7 @@ Scene01::Scene01()
         doorsCol[1]->SetWorldPos(Vector2(-100.0f, -300.0f));
         doorsCol[1]->collider = COLLIDER::RECT;
         doorsCol[1]->isFilled = false;
+        doorsCol[1]->visible = false;
 
         doors[1] = new ObImage(L"doorOpenDown.png");
         doors[1]->SetParentRT(*doorsCol[1]);
@@ -75,6 +77,7 @@ Scene01::Scene01()
         doorsCol[2]->SetWorldPos(Vector2(-600.0f, 0.0f));
         doorsCol[2]->collider = COLLIDER::RECT;
         doorsCol[2]->isFilled = false;
+        doorsCol[2]->visible = false;
 
         doors[2] = new ObImage(L"doorOpenLeft.png");
         doors[2]->SetParentRT(*doorsCol[2]);
@@ -89,6 +92,7 @@ Scene01::Scene01()
         doorsCol[3]->SetWorldPos(Vector2(400.0f, 0.0f));
         doorsCol[3]->collider = COLLIDER::RECT;
         doorsCol[3]->isFilled = false;
+        doorsCol[3]->visible = false;
 
         doors[3] = new ObImage(L"doorOpenRight.png");
         doors[3]->SetParentRT(*doorsCol[3]);
@@ -115,6 +119,7 @@ Scene01::Scene01()
         spikeCol->isFilled = false;
         spikeCol->collider = COLLIDER::RECT;
         spikeCol->SetWorldPos(Vector2(0.0f, 0.0f));
+        spikeCol->visible = false;
         m.unlock();
 
         m.lock();
@@ -172,7 +177,8 @@ Scene01::Scene01()
     m.lock();
     //Sleep(1000);
     loadingCount++;
-    LIGHT->light.radius = 2000.0f;
+    //LIGHT->light.radius = 500.0f;
+    
     m.unlock();
 
     m.lock();
@@ -312,7 +318,7 @@ void Scene01::LateUpdate()
                     break;
                 case 2:
                     //По
-                { //Vector2(60.0f, _sceneLeft->getMap()->GetWorldPos().y * -1.0f)
+                { 
                     SceneKeyFightRoomLeft* _sceneLeft = new SceneKeyFightRoomLeft();
                     _sceneLeft->doorsCol->SetWorldPos(Vector2(_sceneLeft->getMap()->GetWorldPos().x + 1100,
                         _sceneLeft->getMap()->GetWorldPos().y * -1.0f + 400.0f));

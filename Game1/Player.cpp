@@ -43,6 +43,7 @@ Player::Player()
 	col->SetWorldPos(Vector2(-500.0f, -200.0f));
 	col->scale = Vector2(48.0f, 60.0f);
 	col->isFilled = false;
+	col->visible = false;
 
 #pragma region PlayerImage
 	//¸Ó¸®
@@ -548,7 +549,7 @@ void Player::Input()
 		bodyEvil->visible = false;
 		plItemUse->visible = true;
 		plItemUse->ChangeAnim(ANIMSTATE::ONCE, 0.1f);
-		animationPlayTime = 2.0f;
+		animationPlayTime = 1.0f;
 		plState = PlayerState::ITEMUSE;
 	}
 

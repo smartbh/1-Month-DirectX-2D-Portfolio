@@ -13,6 +13,7 @@ addBomb::addBomb(int _num)
     addBombCol->scale = Vector2(32.0f, 32.0f) * 1.5f;
     addBombCol->collider = COLLIDER::RECT;
     addBombCol->isFilled = false;
+    addBombCol->visible = false;
 
     addBombImage = new ObImage(L"bomb_add.png");
     addBombImage->SetParentRT(*addBombCol);
@@ -22,6 +23,7 @@ addBomb::addBomb(int _num)
     addBombColDouble->scale = Vector2(32.0f, 32.0f) * 1.5f;
     addBombColDouble->collider = COLLIDER::RECT;
     addBombColDouble->isFilled = false;
+    addBombColDouble->visible = false;
 
     addBombImageDouble = new ObImage(L"bomb_add2.png");
     addBombImageDouble->SetParentRT(*addBombColDouble);

@@ -8,6 +8,7 @@ PlayerBullet::PlayerBullet()
 	col->isFilled = false;
 	col->visible = true;
 	col->SetWorldPos(Vector2(1000.0f, 1000.0f));
+	col->visible = false;
 
 	bullet = new ObImage(L"tear.png");
 	bullet->SetParentRT(*col);
@@ -42,7 +43,7 @@ bool PlayerBullet::Shoot(Vector2 fireDir, float scalar, Vector2 firePos)
 	SOUND->Stop("PLATTACK");
 	if (!isfire)
 	{
-		col->visible = true;
+		col->visible = false;
 		bullet->visible = true;
 		bulletDead->visible = false;
 		isfire = true;
@@ -113,7 +114,7 @@ void PlayerBullet::StepBack() //º® Å¸ÀÏ¸Ê¿¡ ¸·Èú½Ã
 void PlayerBullet::playTearEffect()
 {
 	Vector2 _lastPost;
-	col->visible = true;
+	col->visible = false;
 	bullet->visible = false;
 	bulletDead->visible = true;
 

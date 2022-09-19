@@ -6,6 +6,7 @@ addKey::addKey()
 	keyCol->scale = Vector2(28.0f, 32.0f);
 	keyCol->collider = COLLIDER::RECT;
 	keyCol->isFilled = false;
+	keyCol->visible = false;
 
 	keyImage = new ObImage(L"key.png");
 	keyImage->SetParentRT(*keyCol);

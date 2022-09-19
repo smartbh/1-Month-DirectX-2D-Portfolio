@@ -19,6 +19,7 @@ SceneGoldRoom::SceneGoldRoom()
     doorsCol->SetWorldPos(Vector2(map->GetWorldPos().x + 50.0f, map->GetWorldPos().y + 300.0f));
     doorsCol->collider = COLLIDER::RECT;
     doorsCol->isFilled = false;
+    doorsCol->visible = false;
     doorsCol->Update();
 
     door = new ObImage(L"doorOpenLeft.png");
@@ -30,6 +31,7 @@ SceneGoldRoom::SceneGoldRoom()
     satanItemCol->collider = COLLIDER::RECT;
     satanItemCol->SetWorldPos(Vector2(1300.0f, -600.0f));
     satanItemCol->isFilled = false;
+    satanItemCol->visible = false;
 
     satanItem = new ObImage(L"satanItem.png");
     satanItem->SetParentRT(*satanItemCol);

@@ -7,6 +7,7 @@ Bomb::Bomb()
 	bombCol->SetWorldPos(Vector2(9999.0f, 9999.0f));
 	bombCol->collider = COLLIDER::RECT;
 	bombCol->isFilled = false;
+	bombCol->visible = false;
 	
 	bombImg = new ObImage(L"bomb_state1.png");
 	bombImg->SetParentRT(*bombCol);
@@ -23,10 +24,11 @@ Bomb::Bomb()
 	bombRange->collider = COLLIDER::NONE;
 	bombRange->isFilled = false;
 	bombRange->color = Color(0.8f, 0.5f, 0.5f, 0.5f);
+	bombRange->visible = false;
 
 	isBombSet = false;
 
-	bombTime = 5.0f;
+	bombTime = 1.0f;
 
 	SOUND->AddSound("bomb_explosion.wav", "BOMBEXPLODE");
 }
@@ -43,7 +45,7 @@ void Bomb::setBomb(Vector2 _locatedBomb)
 {
 	if (!isBombSet)
 	{
-		bombCol->visible = true;
+		bombCol->visible = false;
 		bombImg->visible = true;
 		BombBoom->visible = false;
 		bombRange->visible = false;
@@ -55,10 +57,10 @@ void Bomb::setBomb(Vector2 _locatedBomb)
 
 void Bomb::explodeBomb()
 {
-	bombCol->visible = true;
+	bombCol->visible = false;
 	bombImg->visible = false;
 	BombBoom->visible = true;
-	bombRange->visible = true;
+	bombRange->visible = false;
 	bombCol->collider = COLLIDER::NONE;
 	bombRange->collider = COLLIDER::CIRCLE;
 	BombBoom->SetWorldPos(bombCol->GetWorldPos());

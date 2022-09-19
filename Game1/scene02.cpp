@@ -18,6 +18,7 @@ scene02::scene02()
     doorsCol->SetWorldPos(Vector2(map->GetWorldPos().x + 400.0f, map->GetWorldPos().y + 50.0f));
     doorsCol->collider = COLLIDER::RECT;
     doorsCol->isFilled = false;
+    doorsCol->visible = false;
 
     doors = new ObImage(L"doorOpenDown.png");
     doors->SetParentRT(*doorsCol);
@@ -38,6 +39,7 @@ scene02::scene02()
         rockCol[i]->scale = Vector2(32.0f, 32.0f) * 2.0f;
         rockCol[i]->isFilled = false;
         rockCol[i]->collider = COLLIDER::RECT;
+        rockCol[i]->visible = false;
 
         rockImg[i] = new ObImage(L"Rock.png");
         rockImg[i]->SetParentRT(*rockCol[i]);

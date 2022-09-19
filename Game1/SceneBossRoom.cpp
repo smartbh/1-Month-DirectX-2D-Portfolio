@@ -32,6 +32,8 @@ void SceneBossRoom::Release()
 
 void SceneBossRoom::Update()
 {
+    SOUND->Stop("BGM");
+
 }
 
 void SceneBossRoom::LateUpdate()
